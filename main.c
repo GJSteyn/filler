@@ -1,5 +1,15 @@
 #include "filler.h"
 
+static char	ft_get_player_nr(char c)
+{
+	if (c == '1')
+		return ('o');
+	else if (c == '0')
+		return ('x');
+	else
+		return ('a');
+}
+
 int	main(void)
 {
 	int		ret;
@@ -9,10 +19,10 @@ int	main(void)
 	if (!player)
 		player = (t_player*)malloc(sizeof(t_player));
 	ret = get_next_line(1, &parse);
-	player->c = parse[10];
-	write(2, &(player->c), 1);
+	player->c = ft_get_player_nr(parse[10]);
+	write(1, "19 20\n", 6);
 	write(2, "\n", 1);
-	ft_putnbr(ret);
+	write(2, &ret, 1);
 	free(parse);
 	free(player);
 	return (0);
