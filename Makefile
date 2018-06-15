@@ -6,7 +6,7 @@
 #    By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/12 13:53:08 by gsteyn            #+#    #+#              #
-#    Updated: 2018/06/12 18:47:56 by gsteyn           ###   ########.fr        #
+#    Updated: 2018/06/15 11:16:11 by gsteyn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,12 @@ libs:
 
 gnl:
 	gcc -c $(FLAGS) $(INCLUDES) -o get_next_line.o $(GNL)
+
+fill: rmmain $(OBJS)
+	gcc -o $(NAME) $(FLAGS) $(OBJS) -L. $(LIBS)
+
+rmmain:
+	rm -rf main.o
 
 $(OBJS):
 	gcc -c $(INCLUDES) $(FLAGS) $(FILES)
