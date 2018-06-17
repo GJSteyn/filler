@@ -6,11 +6,16 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:24:16 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/17 19:10:08 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/17 19:22:14 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+int	ft_ind_to_pos(t_2dvect ind, t_2dvect dim)
+{
+	return ((ind.x * dim.y) + ind.y);
+}
 
 void	ft_get_map_dim(t_map *map, char *parse)
 {
