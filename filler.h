@@ -22,4 +22,10 @@ typedef struct		s_map
 	char			*grid;
 }					t_map;
 
+typedef struct		s_piece
+{
+	t_2dvect		dim;
+	char			*grid;
+}					t_piece;
+
 #endif
