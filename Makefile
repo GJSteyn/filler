@@ -6,11 +6,11 @@
 #    By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/12 13:53:08 by gsteyn            #+#    #+#              #
-#    Updated: 2018/06/15 11:16:11 by gsteyn           ###   ########.fr        #
+#    Updated: 2018/06/17 14:55:30 by gsteyn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = filler
+NAME = gsteyn.filler
 FILES = main.c
 OBJS = $(patsubst %.c,%.o,$(FILES)) get_next_line.o
 FLAGS = -Wall -Werror -Wextra
