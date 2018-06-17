@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:24:16 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/17 15:58:48 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/17 19:10:08 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,12 @@ void	ft_get_map(t_map *map)
 	if (!map->grid)
 		map->grid = (char*)malloc(map->dim.x * map->dim.y);
 	read = get_next_line(0, &line);		// skip the line with column indices
+	ft_strclr(map->grid);
 	while (i < map->dim.x)
 	{
 		read = get_next_line(0, &line);
+		if (!read)
+			ft_putstr_fd("mapnope\n", 2);
 		ft_strcat(map->grid, line + 4);
 		i++;
 	}
@@ -58,50 +61,66 @@ void	ft_get_piece_dim(t_piece *piece, char *line)
 		piece->dim.y = (piece->dim.y * 10) + (*start++ - '0');
 }
 
-t_piece	*ft_get_piece(void)
+void		ft_get_piece(t_piece *piece)
 {
 	int		i;
 	int		read;
 	char	*line;
-	t_piece	*piece;
 
 	i = 0;
-	piece = (t_piece*)malloc(sizeof(t_piece));
+	if (!piece)
+		piece = (t_piece*)malloc(sizeof(t_piece));
 	read = get_next_line(0, &line);		// get line with piece size
 	ft_get_piece_dim(piece, line);
+	if (piece->grid)
+		ft_strdel(&(piece->grid));
 	piece->grid = (char*)malloc(piece->dim.x * piece->dim.y);
 	while (i < piece->dim.x)
 	{
 		read = get_next_line(0, &line);
+		if (!read)
+			ft_putstr_fd("piecenope\n", 2);
 		ft_strcat(piece->grid, line);
 		i++;
 	}
-	return (piece);
+}
+
+void		ft_filler(t_filler *fill)
+{
+	int		ret;
+	char	*parse;
+
+	ret = get_next_line(0, &parse);		// get line with map size
+	ft_get_map_dim(fill->map, parse);
+	ft_get_map(fill->map);
+	ft_get_piece(fill->piece);
+
 }
 
 int		main(void)
 {
 	int				ret;
 	char			*parse;
-	t_player		*player;
-	t_map			*map;
-	t_piece			*piece;
+	t_filler		*fill;
 
-	ft_putstr_fd("nope\n", 2);
-	player = (t_player*)malloc(sizeof(t_player));
-	map = (t_map*)malloc(sizeof(t_map));
+	//ft_putstr_fd("nope\n", 2);
+	fill = (t_filler*)malloc(sizeof(t_filler));
+	fill->player = (t_player*)malloc(sizeof(t_player));
+	fill->map = (t_map*)malloc(sizeof(t_map));
+	fill->piece = (t_piece*)malloc(sizeof(t_piece));
 	ret = get_next_line(0, &parse);		// get line with player number
 	if (parse[10] == '1')
-		player->c = 'o';
+		fill->player->c = 'o';
 	else if (parse[10] == '2')
-		player->c = 'x';
-	ret = get_next_line(0, &parse);		// get line with map size
-	ft_get_map_dim(map, parse);
-	ft_get_map(map);
-	piece = ft_get_piece();
-	ft_putstr_fd(piece->grid, 2);
-	//ft_putstr_fd(map->grid, 2);
+		fill->player->c = 'x';
+	//ret = get_next_line(0, &parse);		// get line with map size
+	//if (!ret)
+	//	ft_putstr_fd("retnope\n", 2);
+	//ft_get_map_dim(fill->map, parse);
+	//ft_get_map(fill->map);
+	//ft_get_piece(fill->piece);
 	ft_putstr("19 18\n");
-	
+	while (1)
+		ft_filler(fill);
 	return (0);
 }

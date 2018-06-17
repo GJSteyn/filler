@@ -28,4 +28,11 @@ typedef struct		s_piece
 	char			*grid;
 }					t_piece;
 
+typedef struct		s_filler
+{
+	t_player		*player;
+	t_map			*map;
+	t_piece			*piece;
+}			t_filler;
+
 #endif
