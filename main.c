@@ -6,89 +6,11 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:24:16 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/17 19:22:14 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/18 08:35:13 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-
-int	ft_ind_to_pos(t_2dvect ind, t_2dvect dim)
-{
-	return ((ind.x * dim.y) + ind.y);
-}
-
-void	ft_get_map_dim(t_map *map, char *parse)
-{
-	char	*start;
-
-	map->dim.x = 0;
-	map->dim.y = 0;
-	start = parse + 8;
-	while (ft_isdigit(*start))
-		map->dim.x = (map->dim.x * 10) + (*start++ - '0');
-	start++;
-	while (ft_isdigit(*start))
-		map->dim.y = (map->dim.y * 10) + (*start++ - '0');
-}
-
-void	ft_get_map(t_map *map)
-{
-	int		i;
-	int		read;
-	char	*line;
-
-	i = 0;
-	if (!map->grid)
-		map->grid = (char*)malloc(map->dim.x * map->dim.y);
-	read = get_next_line(0, &line);		// skip the line with column indices
-	ft_strclr(map->grid);
-	while (i < map->dim.x)
-	{
-		read = get_next_line(0, &line);
-		if (!read)
-			ft_putstr_fd("mapnope\n", 2);
-		ft_strcat(map->grid, line + 4);
-		i++;
-	}
-}
-
-void	ft_get_piece_dim(t_piece *piece, char *line)
-{
-	char	*start;
-
-	piece->dim.x = 0;
-	piece->dim.y = 0;
-	start = line + 6;
-	while (ft_isdigit(*start))
-		piece->dim.x = (piece->dim.x * 10) + (*start++ - '0');
-	start++;
-	while (ft_isdigit(*start))
-		piece->dim.y = (piece->dim.y * 10) + (*start++ - '0');
-}
-
-void		ft_get_piece(t_piece *piece)
-{
-	int		i;
-	int		read;
-	char	*line;
-
-	i = 0;
-	if (!piece)
-		piece = (t_piece*)malloc(sizeof(t_piece));
-	read = get_next_line(0, &line);		// get line with piece size
-	ft_get_piece_dim(piece, line);
-	if (piece->grid)
-		ft_strdel(&(piece->grid));
-	piece->grid = (char*)malloc(piece->dim.x * piece->dim.y);
-	while (i < piece->dim.x)
-	{
-		read = get_next_line(0, &line);
-		if (!read)
-			ft_putstr_fd("piecenope\n", 2);
-		ft_strcat(piece->grid, line);
-		i++;
-	}
-}
 
 void		ft_filler(t_filler *fill)
 {
