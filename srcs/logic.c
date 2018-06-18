@@ -6,13 +6,13 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:30:24 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/18 08:32:04 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/18 13:57:04 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int		ft_itop(int x, int y, t_2dvect dim)
+int			ft_itop(int x, int y, t_2dvect dim)
 {
 	return ((x * (dim.x - 1)) + y);
 }
@@ -26,7 +26,7 @@ t_2dvect	ft_itovect(int x, int y)
 	return (ret);
 }
 
-int		ft_valid_pos(t_piece *piece, t_2dvect pos, t_filler *fill)
+int			ft_valid_pos(t_piece *piece, t_2dvect pos, t_filler *fill)
 {
 	int		i;
 	int		j;
@@ -52,4 +52,22 @@ int		ft_valid_pos(t_piece *piece, t_2dvect pos, t_filler *fill)
 		return (1);
 	else
 		return (0);
+}
+
+char		*ft_ind_to_str(int x, int y)
+{
+	char	*str1;
+	char	*str2;
+	char	*temp;
+
+	str1 = ft_itoa(y);
+	str2 = ft_itoa(x);
+	temp = ft_strjoin(str1, " ");
+	ft_strdel(&str1);
+	str1 = ft_strjoin(temp, str2);
+	ft_strdel(&str2);
+	str2 = ft_strjoin(str1, "\n");
+	ft_strdel(&temp);
+	ft_strdel(&str1);
+	return (str2);
 }
