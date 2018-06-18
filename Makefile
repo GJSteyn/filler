@@ -6,16 +6,16 @@
 #    By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/12 13:53:08 by gsteyn            #+#    #+#              #
-#    Updated: 2018/06/18 08:32:32 by gsteyn           ###   ########.fr        #
+#    Updated: 2018/06/18 12:37:16 by gsteyn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = gsteyn.filler
-FILES = main.c map.c piece.c logic.c
-OBJS = $(patsubst %.c,%.o,$(FILES)) get_next_line.o
-SRCS = 
+FILES = map.c piece.c logic.c main.c
+OBJS = $(patsubst %.c, bin/%.o, $(FILES)) ./bin/get_next_line.o
+SRCS = $(patsubst %.c, srcs/%.c, $(FILES))
 FLAGS = -Wall -Werror -Wextra
-INCLUDES = -I libft -I get_next_line
+INCLUDES = -I libft -I get_next_line -I.
 LIBS = libft/libft.a
 GNL = get_next_line/get_next_line.c
 
@@ -28,16 +28,17 @@ libs:
 	make -C ./libft fclean && make -C ./libft
 
 gnl:
-	gcc -c $(FLAGS) $(INCLUDES) -o get_next_line.o $(GNL)
+	gcc -c $(FLAGS) $(INCLUDES) -o ./bin/get_next_line.o $(GNL)
+
+$(OBJS):
+	gcc -c $(INCLUDES) $(FLAGS) $(SRCS)
+	mv *.o ./bin
 
 fill: rmmain $(OBJS)
 	gcc -o $(NAME) $(FLAGS) $(OBJS) -L. $(LIBS)
 
 rmmain:
-	rm -rf main.o map.o
-
-$(OBJS):
-	gcc -c $(INCLUDES) $(FLAGS) $(FILES)
+	rm -rf ./bin/main.o
 
 clean:
 	rm -rf $(OBJS)
