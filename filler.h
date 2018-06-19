@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:10:40 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/18 13:44:55 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/19 12:36:48 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@ typedef struct		s_filler
 }					t_filler;
 
 void				ft_filler(t_filler *fill);
+t_filler			*ft_new_filler(void);
 
 void				ft_get_piece_dim(t_piece *piece, char *line);
-void				ft_get_piece(t_piece *piece);
+void				ft_get_piece(t_piece *piece, char *parse);
 
 int					ft_itop(int x, int y, t_2dvect dim);
 t_2dvect			ft_itovect(int x, int y);
@@ -58,6 +59,6 @@ int					ft_valid_pos(t_piece *piece, t_2dvect pos, t_filler *fill);
 char				*ft_ind_to_str(int x, int y);
 
 void				ft_get_map_dim(t_map *map, char *parse);
-void				ft_get_map(t_map *map);
+void				ft_get_map(t_map *map, char *parse);
 
 #endif
