@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:24:16 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/19 12:42:25 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/19 13:50:52 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,25 +84,31 @@ void		ft_filler(t_filler *fill)
 	int		ret;
 	int		i;
 	int		j;
+	int		gotmap;
+	int		gotpiece;
 	char	*parse;
 	char	*temp;
 
 	i = 0;
 	j = 0;
-	while ((ret = get_next_line(0, &parse)) > 0)
+	gotmap = 0;
+	gotpiece = 0;
+	while ((ret = get_next_line(0, &parse)) != 0)
 	{
 		if (ft_strstr(parse, "Plateau"))
 		{
 			//ft_putstr_fd("Got plateau\n", 2);
 			ft_get_map(fill->map, parse);
+			gotmap = 1;
 		}
 		else if (ft_strstr(parse, "Piece"))
 		{
 			//ft_putstr_fd("Got piece\n", 2);
 			ft_get_piece(fill->piece, parse);
+			gotpiece = 1;
 		}
-		ft_putnbr_fd(ret, 2);
-		ft_putchar_fd('\n', 2);
+		if (gotmap && gotpiece)
+			break;
 	}
 	while (i < fill->map->dim.x - fill->piece->dim.x)
 	{
@@ -125,6 +131,7 @@ void		ft_filler(t_filler *fill)
 	temp = ft_ind_to_str(0, 0);
 	ft_putstr_fd(temp, 1);
 	ft_strdel(&temp);
+	exit(1);
 }
 
 int			main(void)

@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:30:24 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/18 16:33:44 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/19 13:50:54 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,20 @@
 
 int			ft_itop(int x, int y, t_2dvect dim)
 {
+	/*ft_putstr_fd("x: ", 2);
+	ft_putnbr_fd(x, 2);
+	ft_putchar_fd('\n',2 );
+	ft_putstr_fd("y: ", 2);
+	ft_putnbr_fd(y, 2);
+	ft_putchar_fd('\n',2 );
+	ft_putstr_fd("Dim: ", 2);
+	ft_putnbr_fd(dim.x, 2);
+	ft_putchar_fd(' ', 2);
+	ft_putnbr_fd(dim.y, 2);
+	ft_putchar_fd('\n', 2);
+	ft_putstr_fd("result: ", 2);
+	ft_putnbr_fd((x * dim.y) + y, 2);
+	ft_putchar_fd('\n', 2);*/
 	return ((x * dim.y) + y);
 }
 
