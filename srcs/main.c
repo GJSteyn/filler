@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:24:16 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/19 13:50:52 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/20 13:13:25 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,53 +31,6 @@ t_filler	*ft_new_filler(void)
 		ft_putstr_fd("piece mallerror\n", 2);
 	return (ret);
 }
-
-/*
-void		ft_filler(t_filler *fill)
-{
-	int		i;
-	int		j;
-	int		ret;
-	char	*parse;
-	char	*temp;
-
-	i = 0;
-	j = 0;
-	//ft_putstr_fd("Inside filler loop\n", 2);
-	ret = get_next_line(0, &parse);		// get line with map size
-	if (ret == 0)
-	{
-		ft_putstr_fd("nopegnl\n", 2);
-		exit(1);
-	}
-	ft_get_map_dim(fill->map, parse);
-	ft_get_map(fill->map);
-	ft_get_piece(fill->piece);
-	//ft_putstr_fd("After trying to get all the parts\n", 2);
-	while (i < fill->map->dim.x - fill->piece->dim.x)
-	{
-		while (j < fill->map->dim.y - fill->piece->dim.y)
-		{
-			if (ft_valid_pos(fill->piece, ft_itovect(i, j), fill))
-			{
-				temp = ft_ind_to_str(i, j);
-				ft_putstr_fd(temp, 1);
-				//ft_putchar_fd('\n', 2);
-				//ft_putstr_fd(temp, 2);
-				ft_strdel(&temp);
-				return;
-			}
-			j++;
-		}
-		j = 0;
-		i++;
-	}
-	//ft_putstr_fd("Before bottom\n", 2);
-	temp = ft_ind_to_str(0, 0);
-	ft_putstr_fd(temp, 1);
-	ft_strdel(&temp);
-}
-*/
 
 void		ft_filler(t_filler *fill)
 {
