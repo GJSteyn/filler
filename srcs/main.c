@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:24:16 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/20 14:10:59 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/20 18:59:29 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_filler	*ft_new_filler(void)
 {
 	t_filler	*ret;
 
-	ft_putstr_fd("Making new filler\n", 2);
+	//ft_putstr_fd("Making new filler\n", 2);
 	ret = (t_filler*)malloc(sizeof(t_filler));
 	if (!ret)
 		ft_putstr_fd("fill mallerror\n", 2);
@@ -63,9 +63,9 @@ void		ft_filler(t_filler *fill)
 		if (gotmap && gotpiece)
 			break;
 	}
-	while (i < fill->map->dim.x - fill->piece->dim.x)
+	while (i < fill->map->dim.x - (fill->piece->dim.x - 1))
 	{
-		while (j < fill->map->dim.y - fill->piece->dim.y)
+		while (j < fill->map->dim.y - (fill->piece->dim.y - 1))
 		{
 			if (ft_valid_pos(fill->piece, ft_itovect(i, j), fill))
 			{
@@ -84,7 +84,7 @@ void		ft_filler(t_filler *fill)
 	temp = ft_ind_to_str(0, 0);
 	ft_putstr_fd(temp, 1);
 	ft_strdel(&temp);
-	exit(1);
+	return;
 }
 
 int			main(void)
@@ -101,11 +101,17 @@ int			main(void)
 		ft_putstr_fd("nopegnlplayer\n", 2);
 		exit(1);
 	}
-	ft_putstr_fd("Getting player number\n", 2);
+	//ft_putstr_fd("Getting player number\n", 2);
 	if (parse[10] == '1')
+	{
 		fill->player->c = 'o';
+		fill->player->e = 'x';
+	}
 	else if (parse[10] == '2')
+	{
 		fill->player->c = 'x';
+		fill->player->e = 'o';
+	}
 	else
 		ft_putstr_fd("player number error\n", 2);
 	while (1)

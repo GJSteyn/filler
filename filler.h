@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:10:40 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/19 13:50:54 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/20 18:57:03 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 typedef struct		s_player
 {
 	char			c;
+	char			e;
 }					t_player;
 
 typedef struct		s_2dvect
@@ -60,5 +61,6 @@ char				*ft_ind_to_str(int x, int y);
 
 void				ft_get_map_dim(t_map *map, char *parse);
 void				ft_get_map(t_map *map, char *parse);
+void				ft_print_map(t_filler *filler);
 
 #endif

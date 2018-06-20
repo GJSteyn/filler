@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:04:02 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/19 13:50:55 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/20 18:58:27 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,10 @@ void	ft_get_map(t_map *map, char *parse)
 		ft_strcat(map->grid, line + 4);
 		i++;
 	}
+}
+
+void	ft_print_map(t_filler *fill)
+{
+	ft_putstr_fd(fill->map->grid, 2);
+	ft_putchar_fd('\n', 2);
 }

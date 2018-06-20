@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:30:24 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/20 14:08:19 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/20 18:49:43 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int			ft_valid_pos(t_piece *piece, t_2dvect pos, t_filler *fill)
 			map_piece = fill->map->grid[ft_itop(i + pos.x, j + pos.y, fill->map->dim)];
 			if (piece->grid[ft_itop(i, j, piece->dim)] == '*' && (map_piece == fill->player->c || map_piece == fill->player->c - 32))
 				count++;
+			else if (piece->grid[ft_itop(i, j, piece->dim)] == '*' && (map_piece == fill->player->e || map_piece == fill->player->e - 32))
+				return (0);
 			j++;
 		}
 		j = 0;
