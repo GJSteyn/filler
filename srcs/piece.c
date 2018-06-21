@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:12:26 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/19 13:50:53 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/21 16:08:54 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void		ft_get_piece(t_piece *piece, char *parse)
 	if (piece->grid)
 		ft_strdel(&(piece->grid));
 	piece->grid = (char*)malloc(piece->dim.x * piece->dim.y + 1);
+	ft_strclr(piece->grid);
 	while (i < piece->dim.x)
 	{
 		read = get_next_line(0, &line);
