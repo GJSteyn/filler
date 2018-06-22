@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:24:16 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/21 15:06:04 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/22 14:53:31 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ t_filler	*ft_new_filler(void)
 	ret->piece = (t_piece*)malloc(sizeof(t_piece));
 	if (!ret->piece)
 		ft_putstr_fd("piece mallerror\n", 2);
+	ret->hmap = (t_hmap*)malloc(sizeof(t_hmap));
+	if (!ret->hmap)
+		ft_putstr_fd("hmap mallerror\n", 2);
 	return (ret);
 }
 
