@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:10:40 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/20 18:57:03 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/22 13:30:35 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ typedef struct		s_piece
 	t_2dvect		dim;
 	char			*grid;
 }					t_piece;
+
+typedef struct		s_hmap
+{
+	int				*grid;
+}					t_hmap;
 
 typedef struct		s_filler
 {
