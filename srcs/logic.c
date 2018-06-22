@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:30:24 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/22 17:19:33 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/22 17:30:21 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,25 @@ char		*ft_ind_to_str(int x, int y)
 
 int		ft_get_placement_rating(t_2dvect pos, t_filler *fill)
 {
+	int		i;
+	int		j;
+	int		rating;
 
+	i = 0;
+	j = 0;
+	rating = 0;
+	if (!ft_valid_pos(fill->piece, pos, fill))
+		return (-1);
+	while (i < fill->piece->dim.x)
+	{
+		while (j < fill->piece->dim.y)
+		{
+			if (fill->piece->grid[ft_itop(i, j, piece->dim)] == '*')
+				rating += fill->hmap->grid[ft_itop(i + pos.x, j + pos.y, fill->map->dim)];
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	return (rating);
 }
