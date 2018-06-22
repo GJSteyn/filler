@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:24:16 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/22 14:53:31 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/22 18:18:49 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,17 @@ void		ft_filler(t_filler *fill)
 	int		j;
 	int		gotmap;
 	int		gotpiece;
+	int		best;
+	int		current;
+	t_2dvect	bestplace;
 	char	*parse;
 	char	*temp;
 
 	i = 0;
 	j = 0;
+	best = 0;
+	current = 0;
+	bestplace = ft_itovect(0, 0);
 	gotmap = 0;
 	gotpiece = 0;
 	while ((ret = get_next_line(0, &parse)) != 0)
@@ -66,25 +72,22 @@ void		ft_filler(t_filler *fill)
 		if (gotmap && gotpiece)
 			break;
 	}
+	ft_gen_hmap(fill);
 	while (i < fill->map->dim.x - (fill->piece->dim.x - 1))
 	{
 		while (j < fill->map->dim.y - (fill->piece->dim.y - 1))
 		{
-			if (ft_valid_pos(fill->piece, ft_itovect(i, j), fill))
+			if ((current = ft_get_placement_rating(ft_itovect(i, j), fill)) >= best)
 			{
-				temp = ft_ind_to_str(i, j);
-				ft_putstr_fd(temp, 1);
-				//ft_putchar_fd('\n', 2);
-				//ft_putstr_fd(temp, 2);
-				ft_strdel(&temp);
-				return;
+				best = current;
+				bestplace = ft_itovect(i, j);
 			}
 			j++;
 		}
 		j = 0;
 		i++;
 	}
-	temp = ft_ind_to_str(0, 0);
+	temp = ft_ind_to_str(bestplace.x, bestplace.y);
 	ft_putstr_fd(temp, 1);
 	ft_strdel(&temp);
 	return;

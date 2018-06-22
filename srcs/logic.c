@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:30:24 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/22 17:30:21 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/22 18:17:11 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int		ft_get_placement_rating(t_2dvect pos, t_filler *fill)
 	{
 		while (j < fill->piece->dim.y)
 		{
-			if (fill->piece->grid[ft_itop(i, j, piece->dim)] == '*')
+			if (fill->piece->grid[ft_itop(i, j, fill->piece->dim)] == '*')
 				rating += fill->hmap->grid[ft_itop(i + pos.x, j + pos.y, fill->map->dim)];
 			j++;
 		}
