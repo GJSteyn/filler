@@ -4,19 +4,18 @@ void		ft_gen_hmap(t_filler *fill)
 {
 	int		i;
 	int		j;
-	char	*mapgrid;
 
 	i = 0;
 	j = 0;
 	if (!fill->hmap->grid)
 		fill->hmap->grid = (int*)ft_memalloc(sizeof(int) * (fill->map->dim.x * fill->map->dim.y));
-	mapgrid = fill->map->grid;
 	ft_clear_hmap(fill->hmap, fill->map->dim.x * fill->map->dim.y);
 	while (i < fill->map->dim.x)
 	{
 		while (j < fill->map->dim.y)
 		{
 			ft_get_hval(i, j, fill);
+			j++;
 		}
 		j = 0;
 		i++;
@@ -29,13 +28,13 @@ void		ft_clear_hmap(t_hmap *hmap, int mapsize)
 
 	i = 0;
 	while (i < mapsize)
-		hmap[i++] = 0;
+		hmap->grid[i++] = 0;
 }
 
 void		ft_get_hval(int x, int y, t_filler *fill)
 {
 	char	*map;
-	char	*hmap;
+	int		*hmap;
 	int		pos;
 
 	map = fill->map->grid;
@@ -100,5 +99,6 @@ void		ft_print_hmap(t_filler *fill)
 		ft_putnbr_fd(fill->hmap->grid[i], 2);
 		if (fill->map->dim.y % i == 0)
 			ft_putchar_fd('\n', 2);
+		i++;
 	}
 }
