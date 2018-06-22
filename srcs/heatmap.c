@@ -148,3 +148,23 @@ void		ft_hmap_alter(t_filler *fill)
 	}
 	*/
 }
+
+void		ft_row_alter(int row, t_filler *fill)
+{
+}
+
+void		ft_col_alter(int col, t_filler *fill)
+{
+}
+
+int		ft_get_divnum(int i)
+{
+	if (i <= 10)
+		return (3);
+	else if (i <= 20)
+		return (5);
+	else if (i <= 30)
+		return (7);
+	else
+		return (10);
+}
