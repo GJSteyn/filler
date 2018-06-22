@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:10:40 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/22 17:20:17 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/22 18:26:03 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ void				ft_gen_hmap(t_filler *filler);
 void				ft_clear_hmap(t_hmap *hmap, int mapsize);
 void				ft_get_hval(int x, int y, t_filler *filler);
 void				ft_print_hmap(t_filler *filler);
+void				ft_hmap_alter(t_filler *filler);
 
 #endif

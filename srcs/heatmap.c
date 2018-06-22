@@ -102,3 +102,49 @@ void		ft_print_hmap(t_filler *fill)
 		i++;
 	}
 }
+
+void		ft_hmap_alter(t_filler *fill)
+{
+	int		no_of_cols;
+	int		no_of_rows;
+	int		div_cols;
+	int		div_rows;
+
+	div_cols = ft_get_divnum(fill->map->dim.y);
+	div_rows = ft_get_divnum(fill->map->dim.x);
+	/*
+	while (i < fill->map->dim.x)
+	{
+		map_piece = fill->map->grid[ft_itop(i, column, fill->map->dim)];
+		if (map_piece != fill->player->c && map_piece != fill->player->c - 32 && map_piece != fill->player->e && map_piece != fill->player->e - 32)
+			fill->hmap->grid[ft_itop(i, column, fill->map->dim)] += 15;
+		i++;
+	}
+	i = 0;
+	while (i < fill->map->dim.y)
+	{
+		map_piece = fill->map->grid[ft_itop(row, i, fill->map->dim)];
+		if (map_piece != fill->player->c && map_piece != fill->player->c - 32 && map_piece != fill->player->e && map_piece != fill->player->e - 32)
+			fill->hmap->grid[ft_itop(row, i, fill->map->dim)] += 15;
+		i++;
+	}
+	i = 0;
+	column = 10;
+	while (i < fill->map->dim.x)
+	{
+		map_piece = fill->map->grid[ft_itop(i, column, fill->map->dim)];
+		if (map_piece != fill->player->c && map_piece != fill->player->c - 32 && map_piece != fill->player->e && map_piece != fill->player->e - 32)
+			fill->hmap->grid[ft_itop(i, column, fill->map->dim)] += 15;
+		i++;
+	}
+	i = 0;
+	row = 10;
+	while (i < fill->map->dim.y)
+	{
+		map_piece = fill->map->grid[ft_itop(row, i, fill->map->dim)];
+		if (map_piece != fill->player->c && map_piece != fill->player->c - 32 && map_piece != fill->player->e && map_piece != fill->player->e - 32)
+			fill->hmap->grid[ft_itop(row, i, fill->map->dim)] += 15;
+		i++;
+	}
+	*/
+}

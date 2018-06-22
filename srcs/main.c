@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:24:16 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/22 18:18:49 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/22 18:29:56 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void		ft_filler(t_filler *fill)
 			break;
 	}
 	ft_gen_hmap(fill);
+	ft_hmap_alter(fill);
 	while (i < fill->map->dim.x - (fill->piece->dim.x - 1))
 	{
 		while (j < fill->map->dim.y - (fill->piece->dim.y - 1))
