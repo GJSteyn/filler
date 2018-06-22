@@ -87,3 +87,18 @@ void		ft_get_hval(int x, int y, t_filler *fill)
 			hmap[ft_itop(x, y, fill->map->dim)] += 1;
 	}
 }
+
+void		ft_print_hmap(t_filler *fill)
+{
+	int		i;
+	int		mapsize;
+
+	i = 0;
+	mapsize = fill->map->dim.x * fill->map->dim.y;
+	while (i < mapsize)
+	{
+		ft_putnbr_fd(fill->hmap->grid[i], 2);
+		if (fill->map->dim.y % i == 0)
+			ft_putchar_fd('\n', 2);
+	}
+}

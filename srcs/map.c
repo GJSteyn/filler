@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:04:02 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/20 18:58:27 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/22 16:11:20 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,16 @@ void	ft_get_map(t_map *map, char *parse)
 
 void	ft_print_map(t_filler *fill)
 {
-	ft_putstr_fd(fill->map->grid, 2);
-	ft_putchar_fd('\n', 2);
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	while (i < fill->map->dim.x)
+	{
+		ft_putnstr_fd(&(fill->map->grid[j]), 2, fill->map->dim.y);
+		ft_putchar_fd('\n', 2);
+		i++;
+		j += fill->map->dim.y;
+	}
 }
