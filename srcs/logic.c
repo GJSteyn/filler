@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:30:24 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/21 16:07:53 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/22 17:19:33 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,9 @@ char		*ft_ind_to_str(int x, int y)
 	ft_strdel(&temp);
 	ft_strdel(&str1);
 	return (str2);
+}
+
+int		ft_get_placement_rating(t_2dvect pos, t_filler *fill)
+{
+
 }
