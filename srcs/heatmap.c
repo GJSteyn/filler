@@ -105,56 +105,54 @@ void		ft_print_hmap(t_filler *fill)
 
 void		ft_hmap_alter(t_filler *fill)
 {
-	int		no_of_cols;
-	int		no_of_rows;
+	int		i;
 	int		div_cols;
 	int		div_rows;
 
 	div_cols = ft_get_divnum(fill->map->dim.y);
 	div_rows = ft_get_divnum(fill->map->dim.x);
-	/*
-	while (i < fill->map->dim.x)
-	{
-		map_piece = fill->map->grid[ft_itop(i, column, fill->map->dim)];
-		if (map_piece != fill->player->c && map_piece != fill->player->c - 32 && map_piece != fill->player->e && map_piece != fill->player->e - 32)
-			fill->hmap->grid[ft_itop(i, column, fill->map->dim)] += 15;
-		i++;
-	}
-	i = 0;
+	i = div_cols;
 	while (i < fill->map->dim.y)
 	{
-		map_piece = fill->map->grid[ft_itop(row, i, fill->map->dim)];
-		if (map_piece != fill->player->c && map_piece != fill->player->c - 32 && map_piece != fill->player->e && map_piece != fill->player->e - 32)
-			fill->hmap->grid[ft_itop(row, i, fill->map->dim)] += 15;
-		i++;
+		ft_col_alter(i, fill);
+		i += div_cols;
 	}
-	i = 0;
-	column = 10;
+	i = div_rows;
 	while (i < fill->map->dim.x)
 	{
-		map_piece = fill->map->grid[ft_itop(i, column, fill->map->dim)];
-		if (map_piece != fill->player->c && map_piece != fill->player->c - 32 && map_piece != fill->player->e && map_piece != fill->player->e - 32)
-			fill->hmap->grid[ft_itop(i, column, fill->map->dim)] += 15;
-		i++;
+		ft_row_alter(i, fill);
+		i += div_rows;
 	}
-	i = 0;
-	row = 10;
-	while (i < fill->map->dim.y)
-	{
-		map_piece = fill->map->grid[ft_itop(row, i, fill->map->dim)];
-		if (map_piece != fill->player->c && map_piece != fill->player->c - 32 && map_piece != fill->player->e && map_piece != fill->player->e - 32)
-			fill->hmap->grid[ft_itop(row, i, fill->map->dim)] += 15;
-		i++;
-	}
-	*/
 }
 
 void		ft_row_alter(int row, t_filler *fill)
 {
+	int		i;
+	char	map_piece;
+
+	i = 0;
+	while (i < fill->map->dim.y)
+	{
+		map_piece = fill->map->grid[ft_itop(row, i, fill->map->dim)];
+		if (map_piece != fill->player->c && map_piece != fill->player->c - 32 && map_piece != fill->player->e && map_piece != fill->player->e - 32)
+			fill->hmap->grid[ft_itop(row, i, fill->map->dim)] += 15;
+		i++;
+	}
 }
 
 void		ft_col_alter(int col, t_filler *fill)
 {
+	int		i;
+	char	map_piece;
+
+	i = 0;
+	while (i < fill->map->dim.x)
+	{
+		map_piece = fill->map->grid[ft_itop(i, col, fill->map->dim)];
+		if (map_piece != fill->player->c && map_piece != fill->player->c - 32 && map_piece != fill->player->e && map_piece != fill->player->e - 32)
+			fill->hmap->grid[ft_itop(i, col, fill->map->dim)] += 15;
+		i++;
+	}
 }
 
 int		ft_get_divnum(int i)
