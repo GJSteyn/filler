@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:10:40 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/22 13:30:35 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/22 15:25:58 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct		s_filler
 	t_player		*player;
 	t_map			*map;
 	t_piece			*piece;
+	t_hmap			*hmap;
 }					t_filler;
 
 void				ft_filler(t_filler *fill);
@@ -67,5 +68,9 @@ char				*ft_ind_to_str(int x, int y);
 void				ft_get_map_dim(t_map *map, char *parse);
 void				ft_get_map(t_map *map, char *parse);
 void				ft_print_map(t_filler *filler);
+
+void				ft_gen_hmap(t_filler *filler);
+void				ft_clear_hmap(t_hmap *hmap, int mapsize);
+void				ft_get_hval(int x, int y, t_filler *filler);
 
 #endif
