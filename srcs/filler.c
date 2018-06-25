@@ -24,36 +24,14 @@ t_filler	*ft_new_filler(void)
 
 void		ft_filler(t_filler *fill)
 {
-	int		i;
-	int		j;
-	int		best;
-	int		current;
-	t_2dvect	bestplace;
+	t_2dvect	place;
 	char	*temp;
 
-	i = 0;
-	j = 0;
-	best = 0;
-	current = 0;
-	bestplace = ft_itovect(0, 0);
 	ft_get_info(fill);
 	ft_gen_hmap(fill);
 	ft_hmap_alter(fill);
-	while (i < fill->map->dim.x - (fill->piece->dim.x - 1))
-	{
-		while (j < fill->map->dim.y - (fill->piece->dim.y - 1))
-		{
-			if ((current = ft_get_placement_rating(ft_itovect(i, j), fill)) > best)
-			{
-				best = current;
-				bestplace = ft_itovect(i, j);
-			}
-			j++;
-		}
-		j = 0;
-		i++;
-	}
-	temp = ft_ind_to_str(bestplace.x, bestplace.y);
+	place = ft_optimal_place(fill);
+	temp = ft_ind_to_str(place.x, place.y);
 	ft_putstr_fd(temp, 1);
 	ft_strdel(&temp);
 	return;
@@ -84,4 +62,34 @@ void		ft_get_info(t_filler *fill)
 		if (gotmap && gotpiece)
 			break;
 	}
+}
+
+t_2dvect	ft_optimal_place(t_filler *fill)
+{
+	int		i;
+	int		j;
+	int		best;
+	int		current;
+	t_2dvect	bestplace;
+
+	i = 0;
+	j = 0;
+	best = 0;
+	current = 0;
+	bestplace = ft_itovect(0, 0);
+	while (i < fill->map->dim.x - (fill->piece->dim.x - 1))
+	{
+		while (j < fill->map->dim.y - (fill->piece->dim.y - 1))
+		{
+			if ((current = ft_get_placement_rating(ft_itovect(i, j), fill)) > best)
+			{
+				best = current;
+				bestplace = ft_itovect(i, j);
+			}
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	return (bestplace);
 }
