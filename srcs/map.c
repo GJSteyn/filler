@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:04:02 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/25 17:28:04 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/25 17:36:41 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ void	ft_get_map_dim(t_map *map, char *parse)
 {
 	char	*start;
 
-	map->dim.x = 0;
-	map->dim.y = 0;
 	start = parse + 8;
 	while (ft_isdigit(*start))
 		map->dim.x = (map->dim.x * 10) + (*start++ - '0');
