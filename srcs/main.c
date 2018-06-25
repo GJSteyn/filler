@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:24:16 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/25 09:57:27 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/25 13:43:20 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,13 @@ t_filler	*ft_new_filler(void)
 	if (!ret->hmap)
 		ft_putstr_fd("hmap mallerror\n", 2);
 	return (ret);
+}
+
+t_2dvect	ft_get_initial_pos(t_filler *fill)
+{
+	t_2dvect	ret;
+
+
 }
 
 void		ft_filler(t_filler *fill)
