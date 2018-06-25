@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:10:40 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/25 09:48:02 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/25 13:41:32 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,18 @@
 # include <unistd.h>
 # include <string.h>
 
-typedef struct		s_player
-{
-	char			c;
-	char			e;
-}					t_player;
-
 typedef struct		s_2dvect
 {
 	int				x;
 	int				y;
 }					t_2dvect;
+
+typedef struct		s_player
+{
+	t_2dvect		start_pos;
+	char			c;
+	char			e;
+}					t_player;
 
 typedef struct		s_map
 {
@@ -57,6 +58,7 @@ typedef struct		s_filler
 
 void				ft_filler(t_filler *fill);
 t_filler			*ft_new_filler(void);
+t_2dvect			ft_get_initial_pos(t_filler *fill);
 
 t_piece				*ft_init_piece(void);
 void				ft_get_piece_dim(t_piece *piece, char *line);
@@ -64,6 +66,7 @@ void				ft_get_piece(t_piece *piece, char *parse);
 
 int					ft_itop(int x, int y, t_2dvect dim);
 t_2dvect			ft_itovect(int x, int y);
+t_2dvect			ft_postovect(int x, t_2dvect dim);
 int					ft_valid_pos(t_piece *piece, t_2dvect pos, t_filler *fill);
 char				*ft_ind_to_str(int x, int y);
 int					ft_get_placement_rating(t_2dvect pos, t_filler *filler);

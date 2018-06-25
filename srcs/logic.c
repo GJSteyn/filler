@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:30:24 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/22 18:17:11 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/25 13:40:59 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@ t_2dvect	ft_itovect(int x, int y)
 
 	ret.x = x;
 	ret.y = y;
+	return (ret);
+}
+
+t_2dvect	ft_postovect(int x, t_2dvect dim)
+{
+	t_2dvect	ret;
+
+	ret.x = x / dim.y;
+	ret.y = x % dim.y;
 	return (ret);
 }
 
