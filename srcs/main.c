@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:24:16 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/25 09:47:43 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/25 09:57:27 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,14 @@ void		ft_filler(t_filler *fill)
 		if (gotmap && gotpiece)
 			break;
 	}
-	ft_putstr_fd("After gnl loop in filler\n", 2);
+	//ft_putstr_fd("After gnl loop in filler\n", 2);
 	ft_gen_hmap(fill);
 	ft_hmap_alter(fill);
 	while (i < fill->map->dim.x - (fill->piece->dim.x - 1))
 	{
 		while (j < fill->map->dim.y - (fill->piece->dim.y - 1))
 		{
-			if ((current = ft_get_placement_rating(ft_itovect(i, j), fill)) >= best)
+			if ((current = ft_get_placement_rating(ft_itovect(i, j), fill)) > best)
 			{
 				best = current;
 				bestplace = ft_itovect(i, j);
@@ -104,7 +104,7 @@ int			main(void)
 
 	//ft_putstr_fd("nope\n", 2);
 	fill = ft_new_filler();
-	ft_putstr_fd("Before first gnl\n", 2);
+	//ft_putstr_fd("Before first gnl\n", 2);
 	ret = get_next_line(0, &parse);		// get line with player number
 	if (ret <= 0)
 	{
@@ -125,7 +125,7 @@ int			main(void)
 	}
 	else
 		ft_putstr_fd("player number error\n", 2);
-	ft_putstr_fd("Before filler loop\n", 2);
+	//ft_putstr_fd("Before filler loop\n", 2);
 	while (1)
 		ft_filler(fill);
 	return (0);

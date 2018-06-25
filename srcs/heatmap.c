@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 07:19:57 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/25 09:46:47 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/25 09:59:11 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,7 @@ int		ft_get_divnum(int i)
 	else if (i <= 20)
 		return (5);
 	else if (i <= 30)
-		return (7);
-	else
 		return (10);
+	else
+		return (30);
 }
