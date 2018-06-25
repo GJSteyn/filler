@@ -1,4 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   heatmap.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/25 07:19:57 by gsteyn            #+#    #+#             */
+/*   Updated: 2018/06/25 09:46:47 by gsteyn           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "filler.h"
+
+t_hmap		*ft_init_hmap(void)
+{
+	t_hmap		*ret;
+
+	ret = (t_hmap*)malloc(sizeof(t_hmap));
+	ret->grid = NULL;
+	return (ret);
+}
 
 void		ft_gen_hmap(t_filler *fill)
 {

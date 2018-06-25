@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:10:40 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/25 09:36:24 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/25 09:48:02 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void				ft_get_map_dim(t_map *map, char *parse);
 void				ft_get_map(t_map *map, char *parse);
 void				ft_print_map(t_filler *filler);
 
+t_hmap				*ft_init_hmap(void);
 void				ft_gen_hmap(t_filler *filler);
 void				ft_clear_hmap(t_hmap *hmap, int mapsize);
 void				ft_get_hval(int x, int y, t_filler *filler);

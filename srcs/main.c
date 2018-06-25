@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:24:16 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/22 18:29:56 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/25 09:47:43 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ t_filler	*ft_new_filler(void)
 	ret->player = (t_player*)malloc(sizeof(t_player));
 	if (!ret->player)
 		ft_putstr_fd("player mallerror\n", 2);
-	ret->map = (t_map*)malloc(sizeof(t_map));
+	ret->map = ft_init_map();
 	if (!ret->map)
 		ft_putstr_fd("map mallerror\n", 2);
-	ret->piece = (t_piece*)malloc(sizeof(t_piece));
+	ret->piece = ft_init_piece();
 	if (!ret->piece)
 		ft_putstr_fd("piece mallerror\n", 2);
-	ret->hmap = (t_hmap*)malloc(sizeof(t_hmap));
+	ret->hmap = ft_init_hmap();
 	if (!ret->hmap)
 		ft_putstr_fd("hmap mallerror\n", 2);
 	return (ret);
@@ -55,7 +55,8 @@ void		ft_filler(t_filler *fill)
 	bestplace = ft_itovect(0, 0);
 	gotmap = 0;
 	gotpiece = 0;
-	while ((ret = get_next_line(0, &parse)) != 0)
+	//ft_putstr_fd("Before gnl loop in filler\n", 2);
+	while ((ret = get_next_line(0, &parse)) > 0)
 	{
 		if (ft_strstr(parse, "Plateau"))
 		{
@@ -72,6 +73,7 @@ void		ft_filler(t_filler *fill)
 		if (gotmap && gotpiece)
 			break;
 	}
+	ft_putstr_fd("After gnl loop in filler\n", 2);
 	ft_gen_hmap(fill);
 	ft_hmap_alter(fill);
 	while (i < fill->map->dim.x - (fill->piece->dim.x - 1))
@@ -102,12 +104,14 @@ int			main(void)
 
 	//ft_putstr_fd("nope\n", 2);
 	fill = ft_new_filler();
+	ft_putstr_fd("Before first gnl\n", 2);
 	ret = get_next_line(0, &parse);		// get line with player number
 	if (ret <= 0)
 	{
 		ft_putstr_fd("nopegnlplayer\n", 2);
 		exit(1);
 	}
+	ft_putstr_fd("After first gnl\n", 2);
 	//ft_putstr_fd("Getting player number\n", 2);
 	if (parse[10] == '1')
 	{
@@ -121,6 +125,7 @@ int			main(void)
 	}
 	else
 		ft_putstr_fd("player number error\n", 2);
+	ft_putstr_fd("Before filler loop\n", 2);
 	while (1)
 		ft_filler(fill);
 	return (0);
