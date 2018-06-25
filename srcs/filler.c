@@ -27,12 +27,9 @@ void		ft_filler(t_filler *fill)
 	int		ret;
 	int		i;
 	int		j;
-	int		gotmap;
-	int		gotpiece;
 	int		best;
 	int		current;
 	t_2dvect	bestplace;
-	char	*parse;
 	char	*temp;
 
 	i = 0;
@@ -40,23 +37,7 @@ void		ft_filler(t_filler *fill)
 	best = 0;
 	current = 0;
 	bestplace = ft_itovect(0, 0);
-	gotmap = 0;
-	gotpiece = 0;
-	while ((ret = get_next_line(0, &parse)) > 0)
-	{
-		if (ft_strstr(parse, "Plateau"))
-		{
-			ft_get_map(fill->map, parse);
-			gotmap = 1;
-		}
-		else if (ft_strstr(parse, "Piece"))
-		{
-			ft_get_piece(fill->piece, parse);
-			gotpiece = 1;
-		}
-		if (gotmap && gotpiece)
-			break;
-	}
+	ft_get_info(fill);
 	ft_gen_hmap(fill);
 	ft_hmap_alter(fill);
 	while (i < fill->map->dim.x - (fill->piece->dim.x - 1))
@@ -79,7 +60,27 @@ void		ft_filler(t_filler *fill)
 	return;
 }
 
-void		ft_get_info(t_filler *fill, char *parse)
+void		ft_get_info(t_filler *fill)
 {
+	int		gotmap;
+	int		gotpiece;
+	char	*parse;
 
+	gotmap = 0;
+	gotpiece = 0;
+	while ((ret = get_next_line(0, &parse)) > 0)
+	{
+		if (ft_strstr(parse, "Plateau"))
+		{
+			ft_get_map(fill->map, parse);
+			gotmap = 1;
+		}
+		else if (ft_strstr(parse, "Piece"))
+		{
+			ft_get_piece(fill->piece, parse);
+			gotpiece = 1;
+		}
+		if (gotmap && gotpiece)
+			break;
+	}
 }

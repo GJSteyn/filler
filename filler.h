@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:10:40 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/25 17:41:51 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/25 17:45:35 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct		s_filler
 
 void				ft_filler(t_filler *fill);
 t_filler			*ft_new_filler(void);
-void				ft_get_info(t_filler *filler, char *parse);
+void				ft_get_info(t_filler *filler);
 
 t_piece				*ft_init_piece(void);
 void				ft_get_piece_dim(t_piece *piece, char *line);
