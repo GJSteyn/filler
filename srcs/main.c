@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:24:16 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/25 17:02:09 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/25 17:26:37 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ t_filler	*ft_new_filler(void)
 {
 	t_filler	*ret;
 
-	//ft_putstr_fd("Making new filler\n", 2);
 	ret = (t_filler*)malloc(sizeof(t_filler));
 	if (!ret)
 		ft_putstr_fd("fill mallerror\n", 2);
@@ -72,25 +71,21 @@ void		ft_filler(t_filler *fill)
 	bestplace = ft_itovect(0, 0);
 	gotmap = 0;
 	gotpiece = 0;
-	//ft_putstr_fd("Before gnl loop in filler\n", 2);
 	while ((ret = get_next_line(0, &parse)) > 0)
 	{
 		if (ft_strstr(parse, "Plateau"))
 		{
-			//ft_putstr_fd("Got plateau\n", 2);
 			ft_get_map(fill->map, parse);
 			gotmap = 1;
 		}
 		else if (ft_strstr(parse, "Piece"))
 		{
-			//ft_putstr_fd("Got piece\n", 2);
 			ft_get_piece(fill->piece, parse);
 			gotpiece = 1;
 		}
 		if (gotmap && gotpiece)
 			break;
 	}
-	//ft_putstr_fd("After gnl loop in filler\n", 2);
 	ft_gen_hmap(fill);
 	ft_hmap_alter(fill);
 	while (i < fill->map->dim.x - (fill->piece->dim.x - 1))
@@ -119,9 +114,7 @@ int			main(void)
 	char			*parse;
 	t_filler		*fill;
 
-	//ft_putstr_fd("nope\n", 2);
 	fill = ft_new_filler();
-	//ft_putstr_fd("Before first gnl\n", 2);
 	ret = get_next_line(0, &parse);		// get line with player number
 	if (ret <= 0)
 	{
@@ -129,7 +122,6 @@ int			main(void)
 		exit(1);
 	}
 	ft_putstr_fd("After first gnl\n", 2);
-	//ft_putstr_fd("Getting player number\n", 2);
 	if (parse[10] == '1')
 	{
 		fill->player->c = 'o';
@@ -142,7 +134,6 @@ int			main(void)
 	}
 	else
 		ft_putstr_fd("player number error\n", 2);
-	//ft_putstr_fd("Before filler loop\n", 2);
 	while (1)
 		ft_filler(fill);
 	return (0);
