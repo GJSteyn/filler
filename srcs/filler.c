@@ -24,7 +24,6 @@ t_filler	*ft_new_filler(void)
 
 void		ft_filler(t_filler *fill)
 {
-	int		ret;
 	int		i;
 	int		j;
 	int		best;
@@ -62,10 +61,12 @@ void		ft_filler(t_filler *fill)
 
 void		ft_get_info(t_filler *fill)
 {
+	int		ret;
 	int		gotmap;
 	int		gotpiece;
 	char	*parse;
 
+	ret = 0;
 	gotmap = 0;
 	gotpiece = 0;
 	while ((ret = get_next_line(0, &parse)) > 0)
