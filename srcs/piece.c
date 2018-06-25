@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:12:26 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/25 09:49:56 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/25 17:23:13 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_piece		*ft_init_piece(void)
 	ret = (t_piece*)malloc(sizeof(t_piece));
 	ret->dim = ft_itovect(0, 0);
 	ret->grid = NULL;
+	ret->size = 0;
 	return (ret);
 }
 
@@ -41,6 +42,7 @@ void	ft_get_piece_dim(t_piece *piece, char *line)
 		//ft_putstr_fd("piece dim loop 2\n", 2);
 		piece->dim.y = (piece->dim.y * 10) + (*start++ - '0');
 	}
+	piece->size = piece->dim.x * piece->dim.y;
 }
 
 void		ft_get_piece(t_piece *piece, char *parse)
@@ -57,7 +59,7 @@ void		ft_get_piece(t_piece *piece, char *parse)
 	if (piece->grid)
 		ft_strdel(&(piece->grid));
 	//piece->grid = (char*)malloc(piece->dim.x * piece->dim.y + 1);
-	piece->grid = ft_strnew(piece->dim.x * piece->dim.y + 1);
+	piece->grid = ft_strnew(piece->size + 1);
 	//ft_putstr_fd("Before piece clear\n", 2);
 	ft_strclr(piece->grid);
 	//ft_putstr_fd("After piece clear\n", 2);
