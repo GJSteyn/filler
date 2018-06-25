@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:30:24 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/25 13:40:59 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/25 17:34:20 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,4 +106,21 @@ int		ft_get_placement_rating(t_2dvect pos, t_filler *fill)
 		i++;
 	}
 	return (rating);
+}
+
+void		ft_get_initial_pos(t_filler *fill)
+{
+	int			i;
+	int			map_size;
+
+	i = 0;
+	map_size = fill->map->dim.x * fill->map->dim.y;
+	while (i < map_size)
+	{
+		if (fill->map->grid[i] == fill->player->c - 32)
+			fill->player->c_start = ft_postovect(i, fill->map->dim);
+		else if (fill->map->grid[i] == fill->player->e - 32)
+			fill->player->e_start = ft_postovect(i, fill->map->dim);
+		i++;
+	}
 }

@@ -6,28 +6,11 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:24:16 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/25 17:33:18 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/25 17:34:25 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-
-void		ft_get_initial_pos(t_filler *fill)
-{
-	int			i;
-	int			map_size;
-
-	i = 0;
-	map_size = fill->map->dim.x * fill->map->dim.y;
-	while (i < map_size)
-	{
-		if (fill->map->grid[i] == fill->player->c - 32)
-			fill->player->c_start = ft_postovect(i, fill->map->dim);
-		else if (fill->map->grid[i] == fill->player->e - 32)
-			fill->player->e_start = ft_postovect(i, fill->map->dim);
-		i++;
-	}
-}
 
 int			main(void)
 {
