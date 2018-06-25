@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:04:02 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/25 09:50:08 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/25 16:57:51 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ t_map	*ft_init_map(void)
 	ret = (t_map*)malloc(sizeof(t_map));
 	ret->dim = ft_itovect(0, 0);
 	ret->grid = NULL;
+	ret->size = 0;
+	ret->init = 0;
 	return (ret);
 }
 

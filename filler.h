@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:10:40 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/25 13:41:32 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/25 16:58:58 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,25 @@ typedef struct		s_2dvect
 
 typedef struct		s_player
 {
-	t_2dvect		start_pos;
 	char			c;
 	char			e;
+	t_2dvect		c_start;
+	t_2dvect		e_start;
 }					t_player;
 
 typedef struct		s_map
 {
 	t_2dvect		dim;
 	char			*grid;
+	int				size;
+	int				init;
 }					t_map;
 
 typedef struct		s_piece
 {
 	t_2dvect		dim;
 	char			*grid;
+	int				size;
 }					t_piece;
 
 typedef struct		s_hmap
@@ -58,7 +62,7 @@ typedef struct		s_filler
 
 void				ft_filler(t_filler *fill);
 t_filler			*ft_new_filler(void);
-t_2dvect			ft_get_initial_pos(t_filler *fill);
+void				ft_get_initial_pos(t_filler *fill);
 
 t_piece				*ft_init_piece(void);
 void				ft_get_piece_dim(t_piece *piece, char *line);
