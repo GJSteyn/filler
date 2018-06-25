@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:24:16 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/25 13:43:20 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/25 13:46:55 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,21 @@ t_filler	*ft_new_filler(void)
 
 t_2dvect	ft_get_initial_pos(t_filler *fill)
 {
+	int			i;
+	int			map_size;
 	t_2dvect	ret;
 
-
+	i = 0;
+	map_size = fill->map->dim.x * fill->map->dim.y;
+	while (i < map_size)
+	{
+		if (fill->map->grid[i] == fill->player->c)
+		{
+			ret = ft_postovect(i, fill->map->dim);
+			return (ret);
+		}
+		i++;
+	}
 }
 
 void		ft_filler(t_filler *fill)
