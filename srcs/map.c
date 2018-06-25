@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:04:02 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/25 16:57:51 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/25 17:15:57 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	ft_get_map_dim(t_map *map, char *parse)
 	start++;
 	while (ft_isdigit(*start))
 		map->dim.y = (map->dim.y * 10) + (*start++ - '0');
+	map->size = map->dim.x * map->dim.y;
 }
 
 void	ft_get_map(t_map *map, char *parse)
@@ -45,12 +46,13 @@ void	ft_get_map(t_map *map, char *parse)
 	int		read;
 	char	*line;
 
-	ft_get_map_dim(map, parse);
+	if (!map->init)
+		ft_get_map_dim(map, parse);
 	i = 0;
 	if (map->grid == NULL)
 	{
 		//ft_putstr_fd("Allocating map\n", 2);
-		map->grid = (char*)ft_memalloc(map->dim.x * map->dim.y + 1);
+		map->grid = (char*)ft_memalloc(map->size + 1);
 	}
 	read = get_next_line(0, &line);		// skip the line with column indices
 	//ft_putstr_fd("Getting the map\n", 2);
@@ -64,6 +66,7 @@ void	ft_get_map(t_map *map, char *parse)
 		ft_strcat(map->grid, line + 4);
 		i++;
 	}
+	map->init = 1;
 }
 
 void	ft_print_map(t_filler *fill)
