@@ -52,7 +52,7 @@ void		ft_get_info(t_filler *fill)
 	{
 		if (ft_strstr(parse, "Plateau"))
 		{
-			ft_get_map(fill->map, parse);
+			ft_get_map(fill, parse);
 			gotmap = 1;
 		}
 		else if (ft_strstr(parse, "Piece"))
