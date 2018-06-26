@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:10:40 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/26 10:39:05 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/26 10:48:50 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void				ft_hmap_alter(t_filler *filler);
 int					ft_get_divnum(int i);
 void				ft_row_alter(int row, t_filler *filler);
 void				ft_col_alter(int col, t_filler *filler);
+void				ft_diag_alter(t_filler *filler);
 void				ft_hmap_touchlines(t_filler *filler);
 
 #endif

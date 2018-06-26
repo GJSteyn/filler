@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 07:19:57 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/26 10:39:53 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/26 10:56:07 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,7 @@ void		ft_hmap_touchlines(t_filler *fill)
 {
 	ft_row_alter(fill->player->c_start.y, fill);
 	ft_col_alter(fill->player->c_start.x, fill);
+	ft_diag_alter(fill);
 }
 
 void		ft_row_alter(int row, t_filler *fill)
@@ -215,6 +216,25 @@ void		ft_col_alter(int col, t_filler *fill)
 		if (map_piece != fill->player->c && map_piece != fill->player->c - 32 && map_piece != fill->player->e && map_piece != fill->player->e - 32)
 			fill->hmap->grid[ft_itop(i, col, fill->map->dim)] += 15;
 		i++;
+	}
+}
+
+void	ft_diag_alter(t_filler *fill)
+{
+	t_2dvect	cur;
+
+	cur = fill->player->c_start;
+	while (cur.x != fill->player->e_start.x || cur.y != fill->player->e_start.y)
+	{
+		fill->hmap->grid[ft_itop(cur.x, cur.y, fill->map->dim)] += 15;
+		if (cur.x < fill->player->e_start.x)
+			cur.x += 1;
+		else if (cur.x > fill->player->e_start.x)
+			cur.x -= 1;
+		if (cur.y < fill->player->e_start.y)
+			cur.y += 1;
+		else if (cur.y > fill->player->e_start.y)
+			cur.y -= 1;
 	}
 }
 
