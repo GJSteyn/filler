@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 07:19:57 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/25 09:59:11 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/26 09:55:35 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,13 @@ void		ft_get_hval(int x, int y, t_filler *fill)
 		hmap[pos] = 0;
 		return;
 	}
+	ft_hval_top(x, y, fill);
+	ft_hval_bot(x, y, fill);
+	ft_hval_level(x, y, fill);
+}
+
+void		ft_hval_top(int x, int y, t_filler *fill)
+{
 	if (x > 0)		// check top row only when there is a top row
 	{
 		if (y > 0)		// only when there is a left column
@@ -81,6 +88,10 @@ void		ft_get_hval(int x, int y, t_filler *fill)
 				hmap[ft_itop(x, y, fill->map->dim)] += 1;
 		}
 	}
+}
+
+void		ft_hval_bot(int x, int y, t_filler *fill)
+{
 	if (x < fill->map->dim.x - 1)		// check bottom row only when there is a bottom row
 	{
 		if (y > 0)		// only when there is a left column
@@ -96,6 +107,10 @@ void		ft_get_hval(int x, int y, t_filler *fill)
 				hmap[ft_itop(x, y, fill->map->dim)] += 1;
 		}
 	}
+}
+
+void		ft_hval_level(int x, int y, t_filler *fill)
+{
 	if (y > 0)		// check left block only when there is a left block
 	{
 		if (map[ft_itop(x, y - 1, fill->map->dim)] != '.')
