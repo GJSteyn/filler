@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 07:19:57 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/26 12:20:49 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/26 12:26:58 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,7 +253,7 @@ void	ft_vert_alter(t_filler *fill)
 	t_2dvect	cur;
 
 	cur = fill->player->c_start;
-	while (cur.x > 0 && cur.x < fill->map->dim.x)
+	while (cur.x >= 0 && cur.x < fill->map->dim.x)
 	{
 		fill->hmap->grid[ft_itop(cur.x, cur.y, fill->map->dim)] += 15;
 		if (fill->player->c_start.x >= fill->player->e_start.x)
@@ -268,7 +268,7 @@ void	ft_hor_alter(t_filler *fill)
 	t_2dvect	cur;
 
 	cur = fill->player->c_start;
-	while (cur.y > 0 && cur.y < fill->map->dim.y)
+	while (cur.y >= 0 && cur.y < fill->map->dim.y)
 	{
 		fill->hmap->grid[ft_itop(cur.x, cur.y, fill->map->dim)] += 15;
 		if (fill->player->c_start.y >= fill->player->e_start.y)
