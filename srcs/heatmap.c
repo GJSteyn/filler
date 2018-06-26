@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 07:19:57 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/26 10:02:38 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/26 10:39:53 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,12 @@ void		ft_hmap_alter(t_filler *fill)
 		ft_row_alter(i, fill);
 		i += div_rows;
 	}
+}
+
+void		ft_hmap_touchlines(t_filler *fill)
+{
+	ft_row_alter(fill->player->c_start.y, fill);
+	ft_col_alter(fill->player->c_start.x, fill);
 }
 
 void		ft_row_alter(int row, t_filler *fill)
