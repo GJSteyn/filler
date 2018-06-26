@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:10:40 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/25 17:50:24 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/26 09:58:10 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,9 @@ t_hmap				*ft_init_hmap(void);
 void				ft_gen_hmap(t_filler *filler);
 void				ft_clear_hmap(t_hmap *hmap, int mapsize);
 void				ft_get_hval(int x, int y, t_filler *filler);
+void				ft_hval_top(int x, int y, t_filler *filler);
+void				ft_hval_bot(int x, int y, t_filler *filler);
+void				ft_hval_level(int x, int y, t_filler *filler);
 void				ft_print_hmap(t_filler *filler);
 void				ft_hmap_alter(t_filler *filler);
 int					ft_get_divnum(int i);
