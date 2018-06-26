@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 07:19:57 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/26 10:56:07 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/26 12:10:42 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void		ft_hval_top(int x, int y, t_filler *fill)
 	char	*map;
 	int		*hmap;
 	int		pos;
+	char	tmp;
 
 	map = fill->map->grid;
 	hmap = fill->hmap->grid;
@@ -84,15 +85,24 @@ void		ft_hval_top(int x, int y, t_filler *fill)
 	{
 		if (y > 0)		// only when there is a left column
 		{
-			if (map[ft_itop(x - 1, y - 1, fill->map->dim)] != '.')		// check top left
+			tmp = map[ft_itop(x - 1, y - 1, fill->map->dim)];
+			if (tmp == fill->player->c || tmp == fill->player->c - 32)		// check top left
 				hmap[ft_itop(x, y, fill->map->dim)] += 1;
+			else if (tmp == fill->player->e || tmp == fill->player->e - 32)
+				hmap[ft_itop(x, y, fill->map->dim)] += 5;
 		}
-		if (map[ft_itop(x - 1, y, fill->map->dim)] != '.')		// check top center
+		tmp = map[ft_itop(x - 1, y, fill->map->dim)];
+		if (tmp == fill->player->c || tmp == fill->player->c - 32)		// check top center
 			hmap[ft_itop(x, y, fill->map->dim)] += 1;
+		else if (tmp == fill->player->e || tmp == fill->player->e - 32)
+			hmap[ft_itop(x, y, fill->map->dim)] += 5;
 		if (y < fill->map->dim.y - 1)		// only when there is a right column
 		{
-			if (map[ft_itop(x - 1, y + 1, fill->map->dim)] != '.')		// check top right
+			tmp = map[ft_itop(x - 1, y + 1, fill->map->dim)];
+			if (tmp == fill->player->c || tmp == fill->player->c - 32)		// check top right
 				hmap[ft_itop(x, y, fill->map->dim)] += 1;
+			else if (tmp == fill->player->e || tmp == fill->player->e - 32)
+				hmap[ft_itop(x, y, fill->map->dim)] += 5;
 		}
 	}
 }
@@ -102,6 +112,7 @@ void		ft_hval_bot(int x, int y, t_filler *fill)
 	char	*map;
 	int		*hmap;
 	int		pos;
+	char	tmp;
 
 	map = fill->map->grid;
 	hmap = fill->hmap->grid;
@@ -110,15 +121,24 @@ void		ft_hval_bot(int x, int y, t_filler *fill)
 	{
 		if (y > 0)		// only when there is a left column
 		{
-			if (map[ft_itop(x + 1, y - 1, fill->map->dim)] != '.')		// check bottom left
+			tmp = map[ft_itop(x + 1, y - 1, fill->map->dim)];
+			if (tmp == fill->player->c || tmp == fill->player->c - 32)		// check bottom left
 				hmap[ft_itop(x, y, fill->map->dim)] += 1;
+			else if (tmp == fill->player->c || tmp == fill->player->c - 32)
+				hmap[ft_itop(x, y, fill->map->dim)] += 5;
 		}
-		if (map[ft_itop(x + 1, y, fill->map->dim)] != '.')		// check bottom center
+		tmp = map[ft_itop(x + 1, y, fill->map->dim)];
+		if (tmp == fill->player->c || tmp == fill->player->c - 32)		// check bottom center
 			hmap[ft_itop(x, y, fill->map->dim)] += 1;
+		else if (tmp == fill->player->e || tmp == fill->player->e - 32)
+			hmap[ft_itop(x, y, fill->map->dim)] += 5;
 		if (y < fill->map->dim.y - 1)		// only when there is a right column
 		{
-			if (map[ft_itop(x + 1, y + 1, fill->map->dim)] != '.')		// check bottom right
+			tmp = map[ft_itop(x + 1, y + 1, fill->map->dim)];
+			if (tmp == fill->player->c || tmp == fill->player->c - 32)		// check bottom right
 				hmap[ft_itop(x, y, fill->map->dim)] += 1;
+			else if (tmp == fill->player->e || tmp == fill->player->e - 32)
+				hmap[ft_itop(x, y, fill->map->dim)] += 5;
 		}
 	}
 }
@@ -128,19 +148,26 @@ void		ft_hval_level(int x, int y, t_filler *fill)
 	char	*map;
 	int		*hmap;
 	int		pos;
+	char	tmp;
 
 	map = fill->map->grid;
 	hmap = fill->hmap->grid;
 	pos = ft_itop(x, y, fill->map->dim);
 	if (y > 0)		// check left block only when there is a left block
 	{
-		if (map[ft_itop(x, y - 1, fill->map->dim)] != '.')
+		tmp = map[ft_itop(x, y - 1, fill->map->dim)]; 
+		if (tmp == fill->player->c || tmp == fill->player->c - 32)
 			hmap[ft_itop(x, y, fill->map->dim)] += 1;
+		else if (tmp == fill->player->e || tmp == fill->player->e - 32)
+			hmap[ft_itop(x, y, fill->map->dim)] += 5;
 	}
 	if (y < fill->map->dim.y - 1)		// check right block only when there is a right block
 	{
-		if (map[ft_itop(x, y + 1, fill->map->dim)] != '.')
+		tmp = map[ft_itop(x, y + 1, fill->map->dim)]; 
+		if (tmp == fill->player->c || tmp == fill->player->c - 32)
 			hmap[ft_itop(x, y, fill->map->dim)] += 1;
+		else if (tmp == fill->player->e || tmp == fill->player->e - 32)
+			hmap[ft_itop(x, y, fill->map->dim)] += 5;
 	}
 }
 
@@ -226,7 +253,7 @@ void	ft_diag_alter(t_filler *fill)
 	cur = fill->player->c_start;
 	while (cur.x != fill->player->e_start.x || cur.y != fill->player->e_start.y)
 	{
-		fill->hmap->grid[ft_itop(cur.x, cur.y, fill->map->dim)] += 15;
+		fill->hmap->grid[ft_itop(cur.x, cur.y, fill->map->dim)] += 10;
 		if (cur.x < fill->player->e_start.x)
 			cur.x += 1;
 		else if (cur.x > fill->player->e_start.x)
