@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 07:19:57 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/27 11:47:32 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/27 12:11:13 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -314,7 +314,7 @@ void	ft_bubble_top(t_filler *fill,int i,int x,int y)
 {
 	if (x >= 0 && x < fill->map->dim.x && y >= 0 && y < fill->map->dim.y)
 	{
-		if (fill->hmap->grid[ft_itop(x, y, fill->map->dim)] == i)
+		if (fill->hmap->grid[ft_itop(x, y, fill->map->dim)] < i)
 			return;
 		if (fill->map->grid[ft_itop(x, y, fill->map->dim)] != '.')
 			return;
@@ -340,7 +340,7 @@ void	ft_bubble_bot(t_filler *fill,int i,int x,int y)
 {
 	if (x >= 0 && x < fill->map->dim.x && y >= 0 && y < fill->map->dim.y)
 	{
-		if (fill->hmap->grid[ft_itop(x, y, fill->map->dim)] == i)
+		if (fill->hmap->grid[ft_itop(x, y, fill->map->dim)] < i)
 			return;
 		if (fill->map->grid[ft_itop(x, y, fill->map->dim)] != '.')
 			return;
@@ -366,7 +366,7 @@ void	ft_bubble_level(t_filler *fill,int i,int x,int y)
 {
 	if (y >= 0 && y < fill->map->dim.y)
 	{
-		if (fill->hmap->grid[ft_itop(x, y, fill->map->dim)] == i)
+		if (fill->hmap->grid[ft_itop(x, y, fill->map->dim)] < i)
 			return;
 		if (fill->map->grid[ft_itop(x, y, fill->map->dim)] != '.')
 			return;

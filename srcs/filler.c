@@ -84,7 +84,7 @@ t_2dvect	ft_optimal_place(t_filler *fill)
 	{
 		while (j < fill->map->dim.y - (fill->piece->dim.y - 1))
 		{
-			if ((current = ft_get_placement_rating(ft_itovect(i, j), fill)) > best)
+			if ((current = ft_get_placement_rating(ft_itovect(i, j), fill)) >= best)
 			{
 				best = current;
 				bestplace = ft_itovect(i, j);
