@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:24:16 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/25 17:34:25 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/27 07:21:09 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int			main(void)
 		ft_putstr_fd("nopegnlplayer\n", 2);
 		exit(1);
 	}
-	ft_putstr_fd("After first gnl\n", 2);
 	if (parse[10] == '1')
 	{
 		fill->player->c = 'o';
