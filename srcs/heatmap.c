@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 07:19:57 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/27 06:30:18 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/27 11:47:32 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,20 +89,20 @@ void		ft_hval_top(int x, int y, t_filler *fill)
 			if (tmp == fill->player->c || tmp == fill->player->c - 32)		// check top left
 				hmap[ft_itop(x, y, fill->map->dim)] = 1;
 			else if (tmp == fill->player->e || tmp == fill->player->e - 32)
-				hmap[ft_itop(x, y, fill->map->dim)] = 1;
+				hmap[ft_itop(x, y, fill->map->dim)] = 2;
 		}
 		tmp = map[ft_itop(x - 1, y, fill->map->dim)];
 		if (tmp == fill->player->c || tmp == fill->player->c - 32)		// check top center
 			hmap[ft_itop(x, y, fill->map->dim)] = 1;
 		else if (tmp == fill->player->e || tmp == fill->player->e - 32)
-			hmap[ft_itop(x, y, fill->map->dim)] = 1;
+			hmap[ft_itop(x, y, fill->map->dim)] = 2;
 		if (y < fill->map->dim.y - 1)		// only when there is a right column
 		{
 			tmp = map[ft_itop(x - 1, y + 1, fill->map->dim)];
 			if (tmp == fill->player->c || tmp == fill->player->c - 32)		// check top right
 				hmap[ft_itop(x, y, fill->map->dim)] = 1;
 			else if (tmp == fill->player->e || tmp == fill->player->e - 32)
-				hmap[ft_itop(x, y, fill->map->dim)] = 1;
+				hmap[ft_itop(x, y, fill->map->dim)] = 2;
 		}
 	}
 }
@@ -123,22 +123,22 @@ void		ft_hval_bot(int x, int y, t_filler *fill)
 		{
 			tmp = map[ft_itop(x + 1, y - 1, fill->map->dim)];
 			if (tmp == fill->player->c || tmp == fill->player->c - 32)		// check bottom left
-				hmap[ft_itop(x, y, fill->map->dim)] = 1;
-			else if (tmp == fill->player->c || tmp == fill->player->c - 32)
-				hmap[ft_itop(x, y, fill->map->dim)] = 1;
+				hmap[ft_itop(x, y, fill->map->dim)] = 2;
+			else if (tmp == fill->player->e || tmp == fill->player->e - 32)
+				hmap[ft_itop(x, y, fill->map->dim)] = 2;
 		}
 		tmp = map[ft_itop(x + 1, y, fill->map->dim)];
 		if (tmp == fill->player->c || tmp == fill->player->c - 32)		// check bottom center
 			hmap[ft_itop(x, y, fill->map->dim)] = 1;
 		else if (tmp == fill->player->e || tmp == fill->player->e - 32)
-			hmap[ft_itop(x, y, fill->map->dim)] = 1;
+			hmap[ft_itop(x, y, fill->map->dim)] = 2;
 		if (y < fill->map->dim.y - 1)		// only when there is a right column
 		{
 			tmp = map[ft_itop(x + 1, y + 1, fill->map->dim)];
 			if (tmp == fill->player->c || tmp == fill->player->c - 32)		// check bottom right
 				hmap[ft_itop(x, y, fill->map->dim)] = 1;
 			else if (tmp == fill->player->e || tmp == fill->player->e - 32)
-				hmap[ft_itop(x, y, fill->map->dim)] = 1;
+				hmap[ft_itop(x, y, fill->map->dim)] = 2;
 		}
 	}
 }
@@ -159,7 +159,7 @@ void		ft_hval_level(int x, int y, t_filler *fill)
 		if (tmp == fill->player->c || tmp == fill->player->c - 32)
 			hmap[ft_itop(x, y, fill->map->dim)] = 1;
 		else if (tmp == fill->player->e || tmp == fill->player->e - 32)
-			hmap[ft_itop(x, y, fill->map->dim)] = 1;
+			hmap[ft_itop(x, y, fill->map->dim)] = 2;
 	}
 	if (y < fill->map->dim.y - 1)		// check right block only when there is a right block
 	{
@@ -167,7 +167,7 @@ void		ft_hval_level(int x, int y, t_filler *fill)
 		if (tmp == fill->player->c || tmp == fill->player->c - 32)
 			hmap[ft_itop(x, y, fill->map->dim)] = 1;
 		else if (tmp == fill->player->e || tmp == fill->player->e - 32)
-			hmap[ft_itop(x, y, fill->map->dim)] = 1;
+			hmap[ft_itop(x, y, fill->map->dim)] = 2;
 	}
 }
 
@@ -285,7 +285,8 @@ void	ft_diag_alter(t_filler *fill)
 	cur = fill->player->c_start;
 	while (cur.x != fill->player->e_start.x || cur.y != fill->player->e_start.y)
 	{
-		fill->hmap->grid[ft_itop(cur.x, cur.y, fill->map->dim)] += 10;
+		if (fill->map->grid[ft_itop(cur.x, cur.y, fill->map->dim)] == '.')
+			fill->hmap->grid[ft_itop(cur.x, cur.y, fill->map->dim)] += 20;
 		if (cur.x < fill->player->e_start.x)
 			cur.x += 1;
 		else if (cur.x > fill->player->e_start.x)
@@ -309,7 +310,103 @@ int		ft_get_divnum(int i)
 		return (30);
 }
 
+void	ft_bubble_top(t_filler *fill,int i,int x,int y)
+{
+	if (x >= 0 && x < fill->map->dim.x && y >= 0 && y < fill->map->dim.y)
+	{
+		if (fill->hmap->grid[ft_itop(x, y, fill->map->dim)] == i)
+			return;
+		if (fill->map->grid[ft_itop(x, y, fill->map->dim)] != '.')
+			return;
+	}
+	if (x > 0)
+	{
+		if (fill->hmap->grid[ft_itop(x - 1, y, fill->map->dim)] == i)
+			fill->hmap->grid[ft_itop(x, y, fill->map->dim)] = i + 1;
+		if (y > 0)
+		{
+			if (fill->hmap->grid[ft_itop(x - 1, y - 1, fill->map->dim)] == i)
+				fill->hmap->grid[ft_itop(x, y, fill->map->dim)] = i + 1;
+		}
+		if (y < fill->map->dim.y - 1)
+		{
+			if (fill->hmap->grid[ft_itop(x - 1, y + 1, fill->map->dim)] == i)
+				fill->hmap->grid[ft_itop(x, y, fill->map->dim)] = i + 1;
+		}
+	}
+}
+
+void	ft_bubble_bot(t_filler *fill,int i,int x,int y)
+{
+	if (x >= 0 && x < fill->map->dim.x && y >= 0 && y < fill->map->dim.y)
+	{
+		if (fill->hmap->grid[ft_itop(x, y, fill->map->dim)] == i)
+			return;
+		if (fill->map->grid[ft_itop(x, y, fill->map->dim)] != '.')
+			return;
+	}
+	if (x < fill->map->dim.x - 1)
+	{
+		if (fill->hmap->grid[ft_itop(x + 1, y, fill->map->dim)] == i)
+			fill->hmap->grid[ft_itop(x, y, fill->map->dim)] = i + 1;
+		if (y > 0)
+		{
+			if (fill->hmap->grid[ft_itop(x + 1, y - 1, fill->map->dim)] == i)
+				fill->hmap->grid[ft_itop(x, y, fill->map->dim)] = i + 1;
+		}
+		if (y < fill->map->dim.y - 1)
+		{
+			if (fill->hmap->grid[ft_itop(x + 1, y + 1, fill->map->dim)] == i)
+				fill->hmap->grid[ft_itop(x, y, fill->map->dim)] = i + 1;
+		}
+	}
+}
+
+void	ft_bubble_level(t_filler *fill,int i,int x,int y)
+{
+	if (y >= 0 && y < fill->map->dim.y)
+	{
+		if (fill->hmap->grid[ft_itop(x, y, fill->map->dim)] == i)
+			return;
+		if (fill->map->grid[ft_itop(x, y, fill->map->dim)] != '.')
+			return;
+	}
+	if (y > 0)
+	{
+		if (fill->hmap->grid[ft_itop(x, y - 1, fill->map->dim)] == i)
+			fill->hmap->grid[ft_itop(x, y, fill->map->dim)] = i + 1;
+	}
+	if (y < fill->map->dim.y - 1)
+	{
+		if (fill->hmap->grid[ft_itop(x, y + 1, fill->map->dim)] == i)
+			fill->hmap->grid[ft_itop(x, y, fill->map->dim)] = i + 1;
+	}
+}
+
 void	ft_bubble(t_filler *fill)
 {
+	int		i;
+	int		x;
+	int		y;
 
+	i = 2;
+	x = 0;
+	y = 0;
+	while (i < 5)
+	{
+		while (x < fill->map->dim.x)
+		{
+			while (y < fill->map->dim.y)
+			{
+				ft_bubble_top(fill, i, x, y);
+				ft_bubble_bot(fill, i, x, y);
+				ft_bubble_level(fill, i, x, y);
+				y++;
+			}
+			y = 0;
+			x++;
+		}
+		x = 0;
+		i++;
+	}
 }
