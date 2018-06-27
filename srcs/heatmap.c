@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 07:19:57 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/26 12:26:58 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/27 06:30:18 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,22 +87,22 @@ void		ft_hval_top(int x, int y, t_filler *fill)
 		{
 			tmp = map[ft_itop(x - 1, y - 1, fill->map->dim)];
 			if (tmp == fill->player->c || tmp == fill->player->c - 32)		// check top left
-				hmap[ft_itop(x, y, fill->map->dim)] += 1;
+				hmap[ft_itop(x, y, fill->map->dim)] = 1;
 			else if (tmp == fill->player->e || tmp == fill->player->e - 32)
-				hmap[ft_itop(x, y, fill->map->dim)] += 5;
+				hmap[ft_itop(x, y, fill->map->dim)] = 1;
 		}
 		tmp = map[ft_itop(x - 1, y, fill->map->dim)];
 		if (tmp == fill->player->c || tmp == fill->player->c - 32)		// check top center
-			hmap[ft_itop(x, y, fill->map->dim)] += 1;
+			hmap[ft_itop(x, y, fill->map->dim)] = 1;
 		else if (tmp == fill->player->e || tmp == fill->player->e - 32)
-			hmap[ft_itop(x, y, fill->map->dim)] += 5;
+			hmap[ft_itop(x, y, fill->map->dim)] = 1;
 		if (y < fill->map->dim.y - 1)		// only when there is a right column
 		{
 			tmp = map[ft_itop(x - 1, y + 1, fill->map->dim)];
 			if (tmp == fill->player->c || tmp == fill->player->c - 32)		// check top right
-				hmap[ft_itop(x, y, fill->map->dim)] += 1;
+				hmap[ft_itop(x, y, fill->map->dim)] = 1;
 			else if (tmp == fill->player->e || tmp == fill->player->e - 32)
-				hmap[ft_itop(x, y, fill->map->dim)] += 5;
+				hmap[ft_itop(x, y, fill->map->dim)] = 1;
 		}
 	}
 }
@@ -123,22 +123,22 @@ void		ft_hval_bot(int x, int y, t_filler *fill)
 		{
 			tmp = map[ft_itop(x + 1, y - 1, fill->map->dim)];
 			if (tmp == fill->player->c || tmp == fill->player->c - 32)		// check bottom left
-				hmap[ft_itop(x, y, fill->map->dim)] += 1;
+				hmap[ft_itop(x, y, fill->map->dim)] = 1;
 			else if (tmp == fill->player->c || tmp == fill->player->c - 32)
-				hmap[ft_itop(x, y, fill->map->dim)] += 5;
+				hmap[ft_itop(x, y, fill->map->dim)] = 1;
 		}
 		tmp = map[ft_itop(x + 1, y, fill->map->dim)];
 		if (tmp == fill->player->c || tmp == fill->player->c - 32)		// check bottom center
-			hmap[ft_itop(x, y, fill->map->dim)] += 1;
+			hmap[ft_itop(x, y, fill->map->dim)] = 1;
 		else if (tmp == fill->player->e || tmp == fill->player->e - 32)
-			hmap[ft_itop(x, y, fill->map->dim)] += 5;
+			hmap[ft_itop(x, y, fill->map->dim)] = 1;
 		if (y < fill->map->dim.y - 1)		// only when there is a right column
 		{
 			tmp = map[ft_itop(x + 1, y + 1, fill->map->dim)];
 			if (tmp == fill->player->c || tmp == fill->player->c - 32)		// check bottom right
-				hmap[ft_itop(x, y, fill->map->dim)] += 1;
+				hmap[ft_itop(x, y, fill->map->dim)] = 1;
 			else if (tmp == fill->player->e || tmp == fill->player->e - 32)
-				hmap[ft_itop(x, y, fill->map->dim)] += 5;
+				hmap[ft_itop(x, y, fill->map->dim)] = 1;
 		}
 	}
 }
@@ -157,17 +157,17 @@ void		ft_hval_level(int x, int y, t_filler *fill)
 	{
 		tmp = map[ft_itop(x, y - 1, fill->map->dim)]; 
 		if (tmp == fill->player->c || tmp == fill->player->c - 32)
-			hmap[ft_itop(x, y, fill->map->dim)] += 1;
+			hmap[ft_itop(x, y, fill->map->dim)] = 1;
 		else if (tmp == fill->player->e || tmp == fill->player->e - 32)
-			hmap[ft_itop(x, y, fill->map->dim)] += 5;
+			hmap[ft_itop(x, y, fill->map->dim)] = 1;
 	}
 	if (y < fill->map->dim.y - 1)		// check right block only when there is a right block
 	{
 		tmp = map[ft_itop(x, y + 1, fill->map->dim)]; 
 		if (tmp == fill->player->c || tmp == fill->player->c - 32)
-			hmap[ft_itop(x, y, fill->map->dim)] += 1;
+			hmap[ft_itop(x, y, fill->map->dim)] = 1;
 		else if (tmp == fill->player->e || tmp == fill->player->e - 32)
-			hmap[ft_itop(x, y, fill->map->dim)] += 5;
+			hmap[ft_itop(x, y, fill->map->dim)] = 1;
 	}
 }
 
@@ -307,4 +307,9 @@ int		ft_get_divnum(int i)
 		return (10);
 	else
 		return (30);
+}
+
+void	ft_bubble(t_filler *fill)
+{
+
 }

@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:10:40 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/26 12:20:08 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/27 06:30:24 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,6 @@ void				ft_vert_alter(t_filler *filler);
 void				ft_hor_alter(t_filler *filler);
 void				ft_diag_alter(t_filler *filler);
 void				ft_hmap_touchlines(t_filler *filler);
+void				ft_bubble(t_filler *filler);
 
 #endif
