@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 07:19:57 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/29 17:21:37 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/29 17:48:37 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -390,11 +390,13 @@ void	ft_bubble(t_filler *fill)
 	int		i;
 	int		x;
 	int		y;
+	int		target;
 
 	i = 1;
 	x = 0;
 	y = 0;
-	while (i < 5)
+	target = ft_get_target(fill);
+	while (i < target)
 	{
 		while (x < fill->map->dim.x)
 		{
@@ -414,4 +416,14 @@ void	ft_bubble(t_filler *fill)
 		x = 0;
 		i++;
 	}
+}
+
+int		ft_get_target(t_filler *fill)
+{
+	if (fill->map->dim.x == 100)
+		return (5);
+	if (fill->map->dim.x == 24)
+		return (3);
+	else
+		return (2);
 }

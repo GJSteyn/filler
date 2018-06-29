@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:10:40 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/29 16:54:52 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/29 17:43:01 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,6 @@ void				ft_bubble(t_filler *filler);
 void				ft_bubble_top(t_filler *filler, int i, int x, int y);
 void				ft_bubble_bot(t_filler *filler, int i, int x, int y);
 void				ft_bubble_level(t_filler *filler, int i, int x, int y);
+int					ft_get_target(t_filler *filler);
 
 #endif
