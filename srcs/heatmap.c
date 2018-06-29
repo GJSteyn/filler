@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 07:19:57 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/27 12:11:13 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/29 14:56:13 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,10 @@ void		ft_hval_top(int x, int y, t_filler *fill)
 {
 	char	*map;
 	int		*hmap;
-	int		pos;
 	char	tmp;
 
 	map = fill->map->grid;
 	hmap = fill->hmap->grid;
-	pos = ft_itop(x, y, fill->map->dim);
 	if (x > 0)		// check top row only when there is a top row
 	{
 		if (y > 0)		// only when there is a left column
@@ -111,12 +109,10 @@ void		ft_hval_bot(int x, int y, t_filler *fill)
 {
 	char	*map;
 	int		*hmap;
-	int		pos;
 	char	tmp;
 
 	map = fill->map->grid;
 	hmap = fill->hmap->grid;
-	pos = ft_itop(x, y, fill->map->dim);
 	if (x < fill->map->dim.x - 1)		// check bottom row only when there is a bottom row
 	{
 		if (y > 0)		// only when there is a left column
@@ -147,12 +143,10 @@ void		ft_hval_level(int x, int y, t_filler *fill)
 {
 	char	*map;
 	int		*hmap;
-	int		pos;
 	char	tmp;
 
 	map = fill->map->grid;
 	hmap = fill->hmap->grid;
-	pos = ft_itop(x, y, fill->map->dim);
 	if (y > 0)		// check left block only when there is a left block
 	{
 		tmp = map[ft_itop(x, y - 1, fill->map->dim)]; 
