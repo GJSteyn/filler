@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:30:24 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/29 08:47:50 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/29 08:58:30 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,25 @@ int			ft_valid_pos(t_piece *piece, t_2dvect pos, t_filler *fill)
 
 int			ft_piece_fits(t_filler *fill, t_2dvect pos)
 {
+	int		size;
 
+	size = ft_count_stars(fill);
+}
+
+int			ft_count_stars(t_filler *fill)
+{
+	int		i;
+	int		count;
+
+	i = 0;
+	count = 0;
+	while (i < fill->piece->size)
+	{
+		if (fill->piece->grid[i] == '*')
+			count++;
+		i++;
+	}
+	return (count);
 }
 
 char		*ft_ind_to_str(int x, int y)
