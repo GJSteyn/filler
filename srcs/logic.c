@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:30:24 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/29 12:03:41 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/29 15:20:58 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ int			ft_valid_pos(t_piece *piece, t_2dvect pos, t_filler *fill)
 		return (0);
 	while (++i < piece->dim.x)
 	{
-		if (i + pos.x < 0 || i + pos.x > fill->map->dim.x)
+		if (i + pos.x < 0 || i + pos.x >= fill->map->dim.x)
 			continue;
 		while (++j < piece->dim.y)
 		{
-			if (j + pos.y < 0 || j + pos.y > fill->map->dim.y)
+			if (j + pos.y < 0 || j + pos.y >= fill->map->dim.y)
 				continue;
 			map_piece = fill->map->grid[ft_itop(i + pos.x, j + pos.y, fill->map->dim)];
 			if (piece->grid[ft_itop(i, j, piece->dim)] == '*' && (map_piece == fill->player->c || map_piece == fill->player->c - 32))
@@ -86,7 +86,7 @@ int			ft_piece_fits(t_filler *fill, t_2dvect pos)
 		{
 			if (fill->piece->grid[ft_itop(i, j, fill->piece->dim)] == '*')
 			{
-				if (i + pos.x > 0 && i + pos.x < fill->map->dim.x && j + pos.y > 0 && j + pos.y < fill->map->dim.y)
+				if (i + pos.x >= 0 && i + pos.x < fill->map->dim.x && j + pos.y >= 0 && j + pos.y < fill->map->dim.y)
 					count++;
 			}
 			j++;
