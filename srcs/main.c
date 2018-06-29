@@ -6,13 +6,13 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:24:16 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/27 07:21:09 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/29 18:39:02 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int			main(void)
+int			main(int arc, char **arv)
 {
 	int				ret;
 	char			*parse;
@@ -37,6 +37,13 @@ int			main(void)
 	}
 	else
 		ft_putstr_fd("player number error\n", 2);
+	if (arc > 1)
+	{
+		if (ft_strcmp(arv[1], "-f") == 0)
+		{
+			fill->flower = 1;
+		}
+	}
 	while (1)
 		ft_filler(fill);
 	return (0);

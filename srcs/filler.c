@@ -19,6 +19,7 @@ t_filler	*ft_new_filler(void)
 	ret->hmap = ft_init_hmap();
 	if (!ret->hmap)
 		ft_putstr_fd("hmap mallerror\n", 2);
+	ret->flower = 0;
 	return (ret);
 }
 
@@ -28,11 +29,21 @@ void		ft_filler(t_filler *fill)
 	char		*temp;
 
 	ft_get_info(fill);
-	ft_gen_hmap(fill);
+	if (fill->flower == 1 && fill->map->dim.x == 100)
+	{
+		ft_gen_hmap(fill);
+		flower(fill);
+		ft_diag_alter(fill);
+		ft_print_hmap(fill);
+	}
+	else
+	{
+		ft_gen_hmap(fill);
+		ft_bubble(fill);
+		ft_diag_alter(fill);
+	}
 	//ft_hmap_alter(fill);
 	//ft_hmap_touchlines(fill);
-	ft_bubble(fill);
-	ft_diag_alter(fill);
 	//ft_print_hmap(fill);
 	place = ft_optimal_place(fill);
 	temp = ft_ind_to_str(place.x, place.y);

@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:10:40 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/29 17:43:01 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/29 18:36:21 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct		s_filler
 	t_map			*map;
 	t_piece			*piece;
 	t_hmap			*hmap;
+	int			flower;
 }					t_filler;
 
 void				ft_filler(t_filler *fill);
@@ -105,5 +106,7 @@ void				ft_bubble_top(t_filler *filler, int i, int x, int y);
 void				ft_bubble_bot(t_filler *filler, int i, int x, int y);
 void				ft_bubble_level(t_filler *filler, int i, int x, int y);
 int					ft_get_target(t_filler *filler);
+
+void				flower(t_filler *filler);
 
 #endif
