@@ -91,7 +91,7 @@ t_2dvect	ft_optimal_place(t_filler *fill)
 			}
 			j++;
 		}
-		j = 0;
+		j = -fill->piece->dim.y;
 		i++;
 	}
 	return (bestplace);
