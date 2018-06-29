@@ -33,6 +33,7 @@ void		ft_filler(t_filler *fill)
 	//ft_hmap_touchlines(fill);
 	ft_bubble(fill);
 	ft_diag_alter(fill);
+	//ft_print_hmap(fill);
 	place = ft_optimal_place(fill);
 	temp = ft_ind_to_str(place.x, place.y);
 	ft_putstr_fd(temp, 1);
