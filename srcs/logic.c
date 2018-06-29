@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:30:24 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/29 08:58:30 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/29 12:03:41 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int			ft_valid_pos(t_piece *piece, t_2dvect pos, t_filler *fill)
 	i = -1;
 	j = -1;
 	count = 0;
-	if (!ft_piece_fits)
+	if (!ft_piece_fits(fill, pos))
 		return (0);
 	while (++i < piece->dim.x)
 	{
@@ -53,7 +53,7 @@ int			ft_valid_pos(t_piece *piece, t_2dvect pos, t_filler *fill)
 			continue;
 		while (++j < piece->dim.y)
 		{
-			if (++j + pos.y < 0 || j + pos.y > fill->map->dim.y)
+			if (j + pos.y < 0 || j + pos.y > fill->map->dim.y)
 				continue;
 			map_piece = fill->map->grid[ft_itop(i + pos.x, j + pos.y, fill->map->dim)];
 			if (piece->grid[ft_itop(i, j, piece->dim)] == '*' && (map_piece == fill->player->c || map_piece == fill->player->c - 32))
@@ -71,9 +71,32 @@ int			ft_valid_pos(t_piece *piece, t_2dvect pos, t_filler *fill)
 
 int			ft_piece_fits(t_filler *fill, t_2dvect pos)
 {
+	int		i;
+	int		j;
 	int		size;
+	int		count;
 
+	i = 0;
+	j = 0;
 	size = ft_count_stars(fill);
+	count = 0;
+	while (i < fill->piece->dim.x)
+	{
+		while (j < fill->piece->dim.y)
+		{
+			if (fill->piece->grid[ft_itop(i, j, fill->piece->dim)] == '*')
+			{
+				if (i + pos.x > 0 && i + pos.x < fill->map->dim.x && j + pos.y > 0 && j + pos.y < fill->map->dim.y)
+					count++;
+			}
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	if (count == size)
+		return (1);
+	return (0);
 }
 
 int			ft_count_stars(t_filler *fill)
@@ -116,20 +139,24 @@ int		ft_get_placement_rating(t_2dvect pos, t_filler *fill)
 	int		j;
 	int		rating;
 
-	i = 0;
-	j = 0;
+	i = -1;
+	j = -1;
 	rating = 0;
 	if (!ft_valid_pos(fill->piece, pos, fill))
 		return (-1);
-	while (i < fill->piece->dim.x)
+	while (++i < fill->piece->dim.x)
 	{
-		while (j < fill->piece->dim.y)
+		if (i + pos.x < 0 || i + pos.x > fill->map->dim.x)
+			continue;
+		while (++j < fill->piece->dim.y)
 		{
+			if (j + pos.y < 0 || j + pos.y > fill->map->dim.y)
+				continue;
 			if (fill->piece->grid[ft_itop(i, j, fill->piece->dim)] == '*')
 				rating += fill->hmap->grid[ft_itop(i + pos.x, j + pos.y, fill->map->dim)];
 			j++;
 		}
-		j = 0;
+		j = -1;
 		i++;
 	}
 	return (rating);

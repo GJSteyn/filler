@@ -25,7 +25,7 @@ t_filler	*ft_new_filler(void)
 void		ft_filler(t_filler *fill)
 {
 	t_2dvect	place;
-	char	*temp;
+	char		*temp;
 
 	ft_get_info(fill);
 	ft_gen_hmap(fill);
