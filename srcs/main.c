@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:24:16 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/29 18:39:02 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/30 13:30:32 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			main(int arc, char **arv)
 	t_filler		*fill;
 
 	fill = ft_new_filler();
-	ret = get_next_line(0, &parse);		// get line with player number
+	ret = get_next_line(0, &parse);
 	if (ret <= 0)
 	{
 		ft_putstr_fd("nopegnlplayer\n", 2);

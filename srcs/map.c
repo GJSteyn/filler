@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:04:02 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/26 10:34:13 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/06/30 13:30:56 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_get_map(t_filler *fill, char *parse)
 	i = 0;
 	if (map->grid == NULL)
 		map->grid = ft_strnew(map->size + 1);
-	read = get_next_line(0, &line);		// skip the line with column indices
+	read = get_next_line(0, &line);
 	ft_strclr(map->grid);
 	while (i < map->dim.x)
 	{
