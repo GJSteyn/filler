@@ -6,12 +6,12 @@
 #    By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/12 13:53:08 by gsteyn            #+#    #+#              #
-#    Updated: 2018/07/01 12:40:08 by gsteyn           ###   ########.fr        #
+#    Updated: 2018/07/01 15:09:51 by gsteyn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = gsteyn.filler
-FILES = map.c piece.c logic.c main.c heatmap.c filler.c vects.c
+FILES = map.c piece.c logic.c main.c heatmap.c filler.c vects.c bubble.c
 OBJS = $(patsubst %.c, bin/%.o, $(FILES)) ./bin/get_next_line.o
 SRCS = $(patsubst %.c, srcs/%.c, $(FILES))
 FLAGS = -Wall -Werror -Wextra
