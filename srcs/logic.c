@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:30:24 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/01 12:42:14 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/01 14:06:27 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int			ft_count_stars(t_filler *fill)
 	return (count);
 }
 
-int			ft_get_placement_rating(t_2dvect pos, t_filler *fill)
+int			ft_place_rating(t_2dvect pos, t_filler *fill)
 {
 	int		i;
 	int		j;

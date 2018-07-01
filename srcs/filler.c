@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 12:14:32 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/01 14:05:12 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/01 14:07:04 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ t_2dvect	ft_optimal_place(t_filler *fill)
 	{
 		while (++j < fill->map->dim.y + fill->piece->dim.y)
 		{
-			if ((current = ft_get_placement_rating(ft_itovect(i, j), fill)) >= best)
+			if ((current = ft_place_rating(ft_itovect(i, j), fill)) >= best)
 			{
 				best = current;
 				bestplace = ft_itovect(i, j);
