@@ -6,24 +6,24 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:12:26 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/01 12:37:11 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/01 15:55:01 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-t_piece		*ft_init_piece(void)
+t_piece		*init_piece(void)
 {
 	t_piece		*ret;
 
 	ret = (t_piece*)malloc(sizeof(t_piece));
-	ret->dim = ft_itovect(0, 0);
+	ret->dim = itovect(0, 0);
 	ret->grid = NULL;
 	ret->size = 0;
 	return (ret);
 }
 
-void		ft_get_piece_dim(t_piece *piece, char *line)
+void		get_piece_dim(t_piece *piece, char *line)
 {
 	char	*start;
 
@@ -38,7 +38,7 @@ void		ft_get_piece_dim(t_piece *piece, char *line)
 	piece->size = piece->dim.x * piece->dim.y;
 }
 
-void		ft_get_piece(t_piece *piece, char *parse)
+void		get_piece(t_piece *piece, char *parse)
 {
 	int		i;
 	int		read;
@@ -47,7 +47,7 @@ void		ft_get_piece(t_piece *piece, char *parse)
 	i = 0;
 	if (!piece)
 		piece = (t_piece*)malloc(sizeof(t_piece));
-	ft_get_piece_dim(piece, parse);
+	get_piece_dim(piece, parse);
 	if (piece->grid)
 		ft_strdel(&(piece->grid));
 	piece->grid = ft_strnew(piece->size + 1);

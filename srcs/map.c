@@ -6,25 +6,25 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:04:02 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/01 14:20:11 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/01 15:54:23 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-t_map	*ft_init_map(void)
+t_map	*init_map(void)
 {
 	t_map	*ret;
 
 	ret = (t_map*)malloc(sizeof(t_map));
-	ret->dim = ft_itovect(0, 0);
+	ret->dim = itovect(0, 0);
 	ret->grid = NULL;
 	ret->size = 0;
 	ret->init = 0;
 	return (ret);
 }
 
-void	ft_get_map_dim(t_map *map, char *parse)
+void	get_map_dim(t_map *map, char *parse)
 {
 	char	*start;
 
@@ -37,7 +37,7 @@ void	ft_get_map_dim(t_map *map, char *parse)
 	map->size = map->dim.x * map->dim.y;
 }
 
-void	ft_get_map(t_filler *f, char *parse)
+void	get_map(t_filler *f, char *parse)
 {
 	int		i;
 	int		read;
@@ -46,7 +46,7 @@ void	ft_get_map(t_filler *f, char *parse)
 
 	map = f->map;
 	if (!map->init)
-		ft_get_map_dim(map, parse);
+		get_map_dim(map, parse);
 	i = 0;
 	if (map->grid == NULL)
 		map->grid = ft_strnew(map->size + 1);
@@ -61,11 +61,11 @@ void	ft_get_map(t_filler *f, char *parse)
 		i++;
 	}
 	if (map->init == 0)
-		ft_get_initial_pos(f);
+		get_initial_pos(f);
 	map->init = 1;
 }
 
-void	ft_print_map(t_filler *f)
+void	print_map(t_filler *f)
 {
 	int		i;
 	int		j;

@@ -6,18 +6,18 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 12:39:02 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/01 12:39:46 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/01 15:51:38 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int			ft_itop(int x, int y, t_2dvect dim)
+int			itop(int x, int y, t_2dvect dim)
 {
 	return ((x * dim.y) + y);
 }
 
-t_2dvect	ft_itovect(int x, int y)
+t_2dvect	itovect(int x, int y)
 {
 	t_2dvect	ret;
 
@@ -26,7 +26,7 @@ t_2dvect	ft_itovect(int x, int y)
 	return (ret);
 }
 
-t_2dvect	ft_postovect(int x, t_2dvect dim)
+t_2dvect	postovect(int x, t_2dvect dim)
 {
 	t_2dvect	ret;
 
@@ -35,7 +35,7 @@ t_2dvect	ft_postovect(int x, t_2dvect dim)
 	return (ret);
 }
 
-char		*ft_ind_to_str(int x, int y)
+char		*ind_to_str(int x, int y)
 {
 	char	*str1;
 	char	*str2;

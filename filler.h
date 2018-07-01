@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:10:40 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/01 14:46:03 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/01 16:15:04 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,44 +61,44 @@ typedef struct		s_filler
 	t_hmap			*hmap;
 }					t_filler;
 
-void				ft_filler(t_filler *filleer);
-t_filler			*ft_new_filler(void);
-void				ft_get_player_info(t_filler *filler, char *parse);
-void				ft_get_info(t_filler *filler);
-t_2dvect			ft_optimal_place(t_filler *filler);
+void				filler(t_filler *filleer);
+t_filler			*new_filler(void);
+void				get_player_info(t_filler *filler, char *parse);
+void				get_info(t_filler *filler);
+t_2dvect			optimal_place(t_filler *filler);
 
-t_piece				*ft_init_piece(void);
-void				ft_get_piece_dim(t_piece *piece, char *line);
-void				ft_get_piece(t_piece *piece, char *parse);
+t_piece				*init_piece(void);
+void				get_piece_dim(t_piece *piece, char *line);
+void				get_piece(t_piece *piece, char *parse);
 
-int					ft_itop(int x, int y, t_2dvect dim);
-t_2dvect			ft_itovect(int x, int y);
-t_2dvect			ft_postovect(int x, t_2dvect dim);
-int					ft_valid_pos(t_piece *piece, t_2dvect pos, t_filler *filler);
-int					ft_piece_fits(t_filler *filler, t_2dvect pos);
-int					ft_count_stars(t_filler *filler);
-char				*ft_ind_to_str(int x, int y);
-int					ft_place_rating(t_2dvect pos, t_filler *filler);
-void				ft_get_initial_pos(t_filler *filler);
+int					itop(int x, int y, t_2dvect dim);
+t_2dvect			itovect(int x, int y);
+t_2dvect			postovect(int x, t_2dvect dim);
+int					valid_pos(t_piece *piece, t_2dvect pos, t_filler *filler);
+int					piece_fits(t_filler *filler, t_2dvect pos);
+int					count_stars(t_filler *filler);
+char				*ind_to_str(int x, int y);
+int					place_rating(t_2dvect pos, t_filler *filler);
+void				get_initial_pos(t_filler *filler);
 
-t_map				*ft_init_map(void);
-void				ft_get_map_dim(t_map *map, char *parse);
-void				ft_get_map(t_filler *filler, char *parse);
-void				ft_print_map(t_filler *filler);
+t_map				*init_map(void);
+void				get_map_dim(t_map *map, char *parse);
+void				get_map(t_filler *filler, char *parse);
+void				print_map(t_filler *filler);
 
-t_hmap				*ft_init_hmap(void);
-void				ft_gen_hmap(t_filler *filler);
-void				ft_clear_hmap(t_hmap *hmap, int mapsize);
-void				ft_get_hval(int x, int y, t_filler *filler);
-void				ft_hval_top(int x, int y, t_filler *filler);
-void				ft_hval_bot(int x, int y, t_filler *filler);
-void				ft_hval_level(int x, int y, t_filler *filler);
-void				ft_print_hmap(t_filler *filler);
-void				ft_diag_alter(t_filler *filler);
-void				ft_bubble(t_filler *filler);
-void				ft_bubble_top(t_filler *filler, int i, int x, int y);
-void				ft_bubble_bot(t_filler *filler, int i, int x, int y);
-void				ft_bubble_level(t_filler *filler, int i, int x, int y);
-int					ft_get_target(t_filler *filler);
+t_hmap				*init_hmap(void);
+void				gen_hmap(t_filler *filler);
+void				clear_hmap(t_hmap *hmap, int mapsize);
+void				get_hval(int x, int y, t_filler *filler);
+void				hval_top(int x, int y, t_filler *filler);
+void				hval_bot(int x, int y, t_filler *filler);
+void				hval_level(int x, int y, t_filler *filler);
+void				print_hmap(t_filler *filler);
+void				diag_alter(t_filler *filler);
+void				bubble(t_filler *filler);
+void				bubble_top(t_filler *filler, int i, int x, int y);
+void				bubble_bot(t_filler *filler, int i, int x, int y);
+void				bubble_level(t_filler *filler, int i, int x, int y);
+int					get_target(t_filler *filler);
 
 #endif

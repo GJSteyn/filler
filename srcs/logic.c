@@ -6,13 +6,13 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:30:24 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/01 15:33:34 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/01 15:51:12 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int			ft_valid_pos(t_piece *pc, t_2dvect pos, t_filler *f)
+int			valid_pos(t_piece *pc, t_2dvect pos, t_filler *f)
 {
 	int		i;
 	int		j;
@@ -22,7 +22,7 @@ int			ft_valid_pos(t_piece *pc, t_2dvect pos, t_filler *f)
 	i = -1;
 	j = -1;
 	count = 0;
-	if (!ft_piece_fits(f, pos))
+	if (!piece_fits(f, pos))
 		return (0);
 	while (++i < pc->dim.x)
 	{
@@ -32,10 +32,10 @@ int			ft_valid_pos(t_piece *pc, t_2dvect pos, t_filler *f)
 		{
 			if (j + pos.y < 0 || j + pos.y >= f->map->dim.y)
 				continue;
-			map_pc = f->map->grid[ft_itop(i + pos.x, j + pos.y, f->map->dim)];
-			if (pc->grid[ft_itop(i, j, pc->dim)] == '*' && (map_pc == f->pl->c || map_pc == f->pl->c - 32))
+			map_pc = f->map->grid[itop(i + pos.x, j + pos.y, f->map->dim)];
+			if (pc->grid[itop(i, j, pc->dim)] == '*' && (map_pc == f->pl->c || map_pc == f->pl->c - 32))
 				count++;
-			else if (pc->grid[ft_itop(i, j, pc->dim)] == '*' && (map_pc == f->pl->e || map_pc == f->pl->e - 32))
+			else if (pc->grid[itop(i, j, pc->dim)] == '*' && (map_pc == f->pl->e || map_pc == f->pl->e - 32))
 				return (0);
 		}
 		j = -1;
@@ -45,7 +45,7 @@ int			ft_valid_pos(t_piece *pc, t_2dvect pos, t_filler *f)
 	return (0);
 }
 
-int			ft_piece_fits(t_filler *f, t_2dvect pos)
+int			piece_fits(t_filler *f, t_2dvect pos)
 {
 	int		i;
 	int		j;
@@ -54,13 +54,13 @@ int			ft_piece_fits(t_filler *f, t_2dvect pos)
 
 	i = -1;
 	j = -1;
-	size = ft_count_stars(f);
+	size = count_stars(f);
 	count = 0;
 	while (++i < f->pc->dim.x)
 	{
 		while (++j < f->pc->dim.y)
 		{
-			if (f->pc->grid[ft_itop(i, j, f->pc->dim)] == '*')
+			if (f->pc->grid[itop(i, j, f->pc->dim)] == '*')
 			{
 				if (i + pos.x >= 0 && i + pos.x < f->map->dim.x
 						&& j + pos.y >= 0 && j + pos.y < f->map->dim.y)
@@ -74,7 +74,7 @@ int			ft_piece_fits(t_filler *f, t_2dvect pos)
 	return (0);
 }
 
-int			ft_count_stars(t_filler *f)
+int			count_stars(t_filler *f)
 {
 	int		i;
 	int		count;
@@ -90,7 +90,7 @@ int			ft_count_stars(t_filler *f)
 	return (count);
 }
 
-int			ft_place_rating(t_2dvect pos, t_filler *f)
+int			place_rating(t_2dvect pos, t_filler *f)
 {
 	int		i;
 	int		j;
@@ -99,7 +99,7 @@ int			ft_place_rating(t_2dvect pos, t_filler *f)
 	i = -1;
 	j = -1;
 	rating = 0;
-	if (!ft_valid_pos(f->pc, pos, f))
+	if (!valid_pos(f->pc, pos, f))
 		return (-1);
 	while (++i < f->pc->dim.x)
 	{
@@ -109,15 +109,15 @@ int			ft_place_rating(t_2dvect pos, t_filler *f)
 		{
 			if (j + pos.y < 0 || j + pos.y > f->map->dim.y)
 				continue;
-			if (f->pc->grid[ft_itop(i, j, f->pc->dim)] == '*')
-				rating += f->hmap->grid[ft_itop(i + pos.x, j + pos.y, f->map->dim)];
+			if (f->pc->grid[itop(i, j, f->pc->dim)] == '*')
+				rating += f->hmap->grid[itop(i + pos.x, j + pos.y, f->map->dim)];
 		}
 		j = -1;
 	}
 	return (rating);
 }
 
-void		ft_get_initial_pos(t_filler *f)
+void		get_initial_pos(t_filler *f)
 {
 	int			i;
 
@@ -125,9 +125,9 @@ void		ft_get_initial_pos(t_filler *f)
 	while (i < f->map->size)
 	{
 		if (f->map->grid[i] == f->pl->c - 32)
-			f->pl->c_start = ft_postovect(i, f->map->dim);
+			f->pl->c_start = postovect(i, f->map->dim);
 		else if (f->map->grid[i] == f->pl->e - 32)
-			f->pl->e_start = ft_postovect(i, f->map->dim);
+			f->pl->e_start = postovect(i, f->map->dim);
 		i++;
 	}
 }

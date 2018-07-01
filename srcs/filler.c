@@ -6,13 +6,13 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 12:14:32 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/01 14:18:43 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/01 16:13:59 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-t_filler	*ft_new_filler(void)
+t_filler	*new_filler(void)
 {
 	t_filler	*ret;
 
@@ -22,19 +22,19 @@ t_filler	*ft_new_filler(void)
 	ret->pl = (t_player*)malloc(sizeof(t_player));
 	if (!ret->pl)
 		ft_putstr_fd("player mallerror\n", 2);
-	ret->map = ft_init_map();
+	ret->map = init_map();
 	if (!ret->map)
 		ft_putstr_fd("map mallerror\n", 2);
-	ret->pc = ft_init_piece();
+	ret->pc = init_piece();
 	if (!ret->pc)
 		ft_putstr_fd("piece mallerror\n", 2);
-	ret->hmap = ft_init_hmap();
+	ret->hmap = init_hmap();
 	if (!ret->hmap)
 		ft_putstr_fd("hmap mallerror\n", 2);
 	return (ret);
 }
 
-void		ft_get_player_info(t_filler *f, char *parse)
+void		get_player_info(t_filler *f, char *parse)
 {
 	if (parse[10] == '1')
 	{
@@ -50,23 +50,23 @@ void		ft_get_player_info(t_filler *f, char *parse)
 		ft_putstr_fd("player number error\n", 2);
 }
 
-void		ft_filler(t_filler *f)
+void		filler(t_filler *f)
 {
 	t_2dvect	place;
 	char		*temp;
 
-	ft_get_info(f);
-	ft_gen_hmap(f);
-	ft_bubble(f);
-	ft_diag_alter(f);
-	place = ft_optimal_place(f);
-	temp = ft_ind_to_str(place.x, place.y);
+	get_info(f);
+	gen_hmap(f);
+	bubble(f);
+	diag_alter(f);
+	place = optimal_place(f);
+	temp = ind_to_str(place.x, place.y);
 	ft_putstr_fd(temp, 1);
 	ft_strdel(&temp);
 	return ;
 }
 
-void		ft_get_info(t_filler *f)
+void		get_info(t_filler *f)
 {
 	int		ret;
 	int		gotmap;
@@ -80,12 +80,12 @@ void		ft_get_info(t_filler *f)
 	{
 		if (ft_strstr(parse, "Plateau"))
 		{
-			ft_get_map(f, parse);
+			get_map(f, parse);
 			gotmap = 1;
 		}
 		else if (ft_strstr(parse, "Piece"))
 		{
-			ft_get_piece(f->pc, parse);
+			get_piece(f->pc, parse);
 			gotpiece = 1;
 		}
 		if (gotmap && gotpiece)
@@ -93,7 +93,7 @@ void		ft_get_info(t_filler *f)
 	}
 }
 
-t_2dvect	ft_optimal_place(t_filler *f)
+t_2dvect	optimal_place(t_filler *f)
 {
 	int			i;
 	int			j;
@@ -105,18 +105,18 @@ t_2dvect	ft_optimal_place(t_filler *f)
 	j = -f->pc->dim.y - 1;
 	best = 0;
 	current = 0;
-	bestplace = ft_itovect(0, 0);
+	bestplace = itovect(0, 0);
 	while (++i < f->map->dim.x + f->pc->dim.x)
 	{
 		while (++j < f->map->dim.y + f->pc->dim.y)
 		{
-			if ((current = ft_place_rating(ft_itovect(i, j), f)) >= best)
+			if ((current = place_rating(itovect(i, j), f)) >= best)
 			{
 				best = current;
-				bestplace = ft_itovect(i, j);
+				bestplace = itovect(i, j);
 			}
 		}
-		j = -f->pc->dim.y;
+		j = -f->pc->dim.y - 1;
 	}
 	return (bestplace);
 }
