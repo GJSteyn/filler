@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:30:24 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/01 14:33:24 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/01 15:33:34 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,23 +52,22 @@ int			ft_piece_fits(t_filler *f, t_2dvect pos)
 	int		size;
 	int		count;
 
-	i = 0;
-	j = 0;
+	i = -1;
+	j = -1;
 	size = ft_count_stars(f);
 	count = 0;
-	while (i < f->pc->dim.x)
+	while (++i < f->pc->dim.x)
 	{
-		while (j < f->pc->dim.y)
+		while (++j < f->pc->dim.y)
 		{
 			if (f->pc->grid[ft_itop(i, j, f->pc->dim)] == '*')
 			{
-				if (i + pos.x >= 0 && i + pos.x < f->map->dim.x && j + pos.y >= 0 && j + pos.y < f->map->dim.y)
+				if (i + pos.x >= 0 && i + pos.x < f->map->dim.x
+						&& j + pos.y >= 0 && j + pos.y < f->map->dim.y)
 					count++;
 			}
-			j++;
 		}
-		j = 0;
-		i++;
+		j = -1;
 	}
 	if (count == size)
 		return (1);
@@ -112,10 +111,8 @@ int			ft_place_rating(t_2dvect pos, t_filler *f)
 				continue;
 			if (f->pc->grid[ft_itop(i, j, f->pc->dim)] == '*')
 				rating += f->hmap->grid[ft_itop(i + pos.x, j + pos.y, f->map->dim)];
-			j++;
 		}
 		j = -1;
-		i++;
 	}
 	return (rating);
 }
