@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 07:19:57 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/01 14:34:06 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/01 14:38:56 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void		ft_get_hval(int x, int y, t_filler *f)
 	if (map[pos] == f->pl->c || map[pos] == f->pl->c - 32 || map[pos] == f->pl->e || map[pos] == f->pl->e - 32)
 	{
 		hmap[pos] = 0;
-		return;
+		return ;
 	}
 	ft_hval_top(x, y, f);
 	ft_hval_bot(x, y, f);
@@ -224,7 +224,7 @@ void		ft_col_alter(int col, t_filler *f)
 	}
 }
 
-void	ft_vert_alter(t_filler *f)
+void		ft_vert_alter(t_filler *f)
 {
 	t_2dvect	cur;
 
@@ -239,7 +239,7 @@ void	ft_vert_alter(t_filler *f)
 	}
 }
 
-void	ft_hor_alter(t_filler *f)
+void		ft_hor_alter(t_filler *f)
 {
 	t_2dvect	cur;
 
@@ -254,7 +254,7 @@ void	ft_hor_alter(t_filler *f)
 	}
 }
 
-void	ft_diag_alter(t_filler *f)
+void		ft_diag_alter(t_filler *f)
 {
 	t_2dvect	cur;
 
@@ -274,7 +274,7 @@ void	ft_diag_alter(t_filler *f)
 	}
 }
 
-int		ft_get_divnum(int i)
+int			ft_get_divnum(int i)
 {
 	if (i <= 10)
 		return (3);
@@ -286,27 +286,27 @@ int		ft_get_divnum(int i)
 		return (30);
 }
 
-void	ft_bubble_top(t_filler *f,int i,int x,int y)
+void		ft_bubble_top(t_filler *f, int i, int x, int y)
 {
 	if (x >= 0 && x < f->map->dim.x && y >= 0 && y < f->map->dim.y)
 	{
 		if (f->map->grid[ft_itop(x, y, f->map->dim)] != '.')
-			return;
+			return ;
 	}
 	if (x > 0)
 	{
 		if (f->map->grid[ft_itop(x - 1, y, f->map->dim)] == f->pl->c)
-			return;
+			return ;
 		if (f->map->grid[ft_itop(x - 1, y, f->map->dim)] == f->pl->c - 32)
-			return;
+			return ;
 		if (f->hmap->grid[ft_itop(x - 1, y, f->map->dim)] == i)
 			f->hmap->grid[ft_itop(x, y, f->map->dim)] = i + 1;
 		if (y > 0)
 		{
 			if (f->map->grid[ft_itop(x - 1, y - 1, f->map->dim)] == f->pl->c)
-				return;
+				return ;
 			if (f->map->grid[ft_itop(x - 1, y - 1, f->map->dim)] == f->pl->c - 32)
-				return;
+				return ;
 			if (f->hmap->grid[ft_itop(x - 1, y - 1, f->map->dim)] == i)
 				f->hmap->grid[ft_itop(x, y, f->map->dim)] = i + 1;
 		}
@@ -318,12 +318,12 @@ void	ft_bubble_top(t_filler *f,int i,int x,int y)
 	}
 }
 
-void	ft_bubble_bot(t_filler *f,int i,int x,int y)
+void		ft_bubble_bot(t_filler *f, int i, int x, int y)
 {
 	if (x >= 0 && x < f->map->dim.x && y >= 0 && y < f->map->dim.y)
 	{
 		if (f->map->grid[ft_itop(x, y, f->map->dim)] != '.')
-			return;
+			return ;
 	}
 	if (x < f->map->dim.x - 1)
 	{
@@ -342,12 +342,12 @@ void	ft_bubble_bot(t_filler *f,int i,int x,int y)
 	}
 }
 
-void	ft_bubble_level(t_filler *f,int i,int x,int y)
+void		ft_bubble_level(t_filler *f, int i, int x, int y)
 {
 	if (y >= 0 && y < f->map->dim.y)
 	{
 		if (f->map->grid[ft_itop(x, y, f->map->dim)] != '.')
-			return;
+			return ;
 	}
 	if (y > 0)
 	{
@@ -361,7 +361,7 @@ void	ft_bubble_level(t_filler *f,int i,int x,int y)
 	}
 }
 
-void	ft_bubble(t_filler *f)
+void		ft_bubble(t_filler *f)
 {
 	int		i;
 	int		x;
@@ -394,7 +394,7 @@ void	ft_bubble(t_filler *f)
 	}
 }
 
-int		ft_get_target(t_filler *f)
+int			ft_get_target(t_filler *f)
 {
 	if (f->map->dim.x == 100)
 		return (5);
