@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:24:16 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/30 13:30:32 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/01 12:35:59 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,6 @@ int			main(int arc, char **arv)
 	}
 	else
 		ft_putstr_fd("player number error\n", 2);
-	if (arc > 1)
-	{
-		if (ft_strcmp(arv[1], "-f") == 0)
-		{
-			fill->flower = 1;
-		}
-	}
 	while (1)
 		ft_filler(fill);
 	return (0);

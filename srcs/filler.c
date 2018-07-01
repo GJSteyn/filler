@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 12:14:32 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/01 12:14:34 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/01 12:36:18 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,9 @@ void		ft_filler(t_filler *fill)
 	char		*temp;
 
 	ft_get_info(fill);
-	/*
-	if (fill->flower == 1 && fill->map->dim.x == 100)
-	{
-		ft_gen_hmap(fill);
-		flower(fill);
-		ft_diag_alter(fill);
-		ft_print_hmap(fill);
-	}
-	*/
-	//else
-	//{
-		ft_gen_hmap(fill);
-		ft_bubble(fill);
-		ft_diag_alter(fill);
-	//}
+	ft_gen_hmap(fill);
+	ft_bubble(fill);
+	ft_diag_alter(fill);
 	place = ft_optimal_place(fill);
 	temp = ft_ind_to_str(place.x, place.y);
 	ft_putstr_fd(temp, 1);

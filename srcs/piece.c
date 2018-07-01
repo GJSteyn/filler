@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:12:26 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/25 17:26:05 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/01 12:37:11 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_piece		*ft_init_piece(void)
 	return (ret);
 }
 
-void	ft_get_piece_dim(t_piece *piece, char *line)
+void		ft_get_piece_dim(t_piece *piece, char *line)
 {
 	char	*start;
 
