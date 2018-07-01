@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 15:07:58 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/01 15:08:41 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/01 15:26:39 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		ft_diag_alter(t_filler *f)
 	t_2dvect	cur;
 
 	cur = f->pl->c_start;
-	while (cur.x != f->pl->e_start.x || cur.y != f->pl->e_start.y)
+	while (cur.x != f->pl->e_start.x && cur.y != f->pl->e_start.y)
 	{
 		if (f->map->grid[ft_itop(cur.x, cur.y, f->map->dim)] == '.')
 			f->hmap->grid[ft_itop(cur.x, cur.y, f->map->dim)] += 20;
