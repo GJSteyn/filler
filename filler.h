@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:10:40 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/01 14:10:47 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/01 14:46:03 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,7 @@ void				ft_hval_top(int x, int y, t_filler *filler);
 void				ft_hval_bot(int x, int y, t_filler *filler);
 void				ft_hval_level(int x, int y, t_filler *filler);
 void				ft_print_hmap(t_filler *filler);
-void				ft_hmap_alter(t_filler *filler);
-int					ft_get_divnum(int i);
-void				ft_row_alter(int row, t_filler *filler);
-void				ft_col_alter(int col, t_filler *filler);
-void				ft_vert_alter(t_filler *filler);
-void				ft_hor_alter(t_filler *filler);
 void				ft_diag_alter(t_filler *filler);
-void				ft_hmap_touchlines(t_filler *filler);
 void				ft_bubble(t_filler *filler);
 void				ft_bubble_top(t_filler *filler, int i, int x, int y);
 void				ft_bubble_bot(t_filler *filler, int i, int x, int y);

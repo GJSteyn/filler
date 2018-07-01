@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 07:19:57 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/01 14:38:56 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/01 14:46:30 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,95 +165,6 @@ void		ft_print_hmap(t_filler *f)
 	}
 }
 
-void		ft_hmap_alter(t_filler *f)
-{
-	int		i;
-	int		div_cols;
-	int		div_rows;
-
-	div_cols = ft_get_divnum(f->map->dim.y);
-	div_rows = ft_get_divnum(f->map->dim.x);
-	i = div_cols;
-	while (i < f->map->dim.y)
-	{
-		ft_col_alter(i, f);
-		i += div_cols;
-	}
-	i = div_rows;
-	while (i < f->map->dim.x)
-	{
-		ft_row_alter(i, f);
-		i += div_rows;
-	}
-}
-
-void		ft_hmap_touchlines(t_filler *f)
-{
-	ft_vert_alter(f);
-	ft_hor_alter(f);
-	ft_diag_alter(f);
-}
-
-void		ft_row_alter(int row, t_filler *f)
-{
-	int		i;
-	char	map_piece;
-
-	i = 0;
-	while (i < f->map->dim.y)
-	{
-		map_piece = f->map->grid[ft_itop(row, i, f->map->dim)];
-		if (map_piece != f->pl->c && map_piece != f->pl->c - 32 && map_piece != f->pl->e && map_piece != f->pl->e - 32)
-			f->hmap->grid[ft_itop(row, i, f->map->dim)] += 15;
-		i++;
-	}
-}
-
-void		ft_col_alter(int col, t_filler *f)
-{
-	int		i;
-	char	map_pc;
-
-	i = 0;
-	while (i < f->map->dim.x)
-	{
-		map_pc = f->map->grid[ft_itop(i, col, f->map->dim)];
-		if (map_pc != f->pl->c && map_pc != f->pl->c - 32 && map_pc != f->pl->e && map_pc != f->pl->e - 32)
-			f->hmap->grid[ft_itop(i, col, f->map->dim)] += 15;
-		i++;
-	}
-}
-
-void		ft_vert_alter(t_filler *f)
-{
-	t_2dvect	cur;
-
-	cur = f->pl->c_start;
-	while (cur.x >= 0 && cur.x < f->map->dim.x)
-	{
-		f->hmap->grid[ft_itop(cur.x, cur.y, f->map->dim)] += 15;
-		if (f->pl->c_start.x >= f->pl->e_start.x)
-			cur.x -= 1;
-		else
-			cur.x += 1;
-	}
-}
-
-void		ft_hor_alter(t_filler *f)
-{
-	t_2dvect	cur;
-
-	cur = f->pl->c_start;
-	while (cur.y >= 0 && cur.y < f->map->dim.y)
-	{
-		f->hmap->grid[ft_itop(cur.x, cur.y, f->map->dim)] += 15;
-		if (f->pl->c_start.y >= f->pl->e_start.y)
-			cur.y -= 1;
-		else
-			cur.y += 1;
-	}
-}
-
 void		ft_diag_alter(t_filler *f)
 {
 	t_2dvect	cur;
@@ -272,18 +183,6 @@ void		ft_diag_alter(t_filler *f)
 		else if (cur.y > f->pl->e_start.y)
 			cur.y -= 1;
 	}
-}
-
-int			ft_get_divnum(int i)
-{
-	if (i <= 10)
-		return (3);
-	else if (i <= 20)
-		return (5);
-	else if (i <= 30)
-		return (10);
-	else
-		return (30);
 }
 
 void		ft_bubble_top(t_filler *f, int i, int x, int y)
