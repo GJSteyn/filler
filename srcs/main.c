@@ -6,13 +6,13 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:24:16 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/01 12:35:59 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/01 14:05:18 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int			main(int arc, char **arv)
+int			main(void)
 {
 	int				ret;
 	char			*parse;
@@ -25,18 +25,7 @@ int			main(int arc, char **arv)
 		ft_putstr_fd("nopegnlplayer\n", 2);
 		exit(1);
 	}
-	if (parse[10] == '1')
-	{
-		fill->player->c = 'o';
-		fill->player->e = 'x';
-	}
-	else if (parse[10] == '2')
-	{
-		fill->player->c = 'x';
-		fill->player->e = 'o';
-	}
-	else
-		ft_putstr_fd("player number error\n", 2);
+	ft_get_player_info(fill, parse);
 	while (1)
 		ft_filler(fill);
 	return (0);

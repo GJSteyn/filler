@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:10:40 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/29 18:36:21 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/01 14:05:15 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ typedef struct		s_filler
 	t_map			*map;
 	t_piece			*piece;
 	t_hmap			*hmap;
-	int			flower;
 }					t_filler;
 
-void				ft_filler(t_filler *fill);
+void				ft_filler(t_filler *filleer);
 t_filler			*ft_new_filler(void);
+void				ft_get_player_info(t_filler *filler, char *parse);
 void				ft_get_info(t_filler *filler);
 t_2dvect			ft_optimal_place(t_filler *filler);
 
@@ -73,12 +73,12 @@ void				ft_get_piece(t_piece *piece, char *parse);
 int					ft_itop(int x, int y, t_2dvect dim);
 t_2dvect			ft_itovect(int x, int y);
 t_2dvect			ft_postovect(int x, t_2dvect dim);
-int					ft_valid_pos(t_piece *piece, t_2dvect pos, t_filler *fill);
+int					ft_valid_pos(t_piece *piece, t_2dvect pos, t_filler *filler);
 int					ft_piece_fits(t_filler *filler, t_2dvect pos);
 int					ft_count_stars(t_filler *filler);
 char				*ft_ind_to_str(int x, int y);
 int					ft_get_placement_rating(t_2dvect pos, t_filler *filler);
-void				ft_get_initial_pos(t_filler *fill);
+void				ft_get_initial_pos(t_filler *filler);
 
 t_map				*ft_init_map(void);
 void				ft_get_map_dim(t_map *map, char *parse);
@@ -106,7 +106,5 @@ void				ft_bubble_top(t_filler *filler, int i, int x, int y);
 void				ft_bubble_bot(t_filler *filler, int i, int x, int y);
 void				ft_bubble_level(t_filler *filler, int i, int x, int y);
 int					ft_get_target(t_filler *filler);
-
-void				flower(t_filler *filler);
 
 #endif

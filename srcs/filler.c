@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 12:14:32 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/01 12:36:18 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/01 14:05:12 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,23 @@ t_filler	*ft_new_filler(void)
 	ret->hmap = ft_init_hmap();
 	if (!ret->hmap)
 		ft_putstr_fd("hmap mallerror\n", 2);
-	ret->flower = 0;
 	return (ret);
+}
+
+void		ft_get_player_info(t_filler *fill, char *parse)
+{
+	if (parse[10] == '1')
+	{
+		fill->player->c = 'o';
+		fill->player->e = 'x';
+	}
+	else if (parse[10] == '2')
+	{
+		fill->player->c = 'x';
+		fill->player->e = 'o';
+	}
+	else
+		ft_putstr_fd("player number error\n", 2);
 }
 
 void		ft_filler(t_filler *fill)
@@ -48,7 +63,7 @@ void		ft_filler(t_filler *fill)
 	temp = ft_ind_to_str(place.x, place.y);
 	ft_putstr_fd(temp, 1);
 	ft_strdel(&temp);
-	return;
+	return ;
 }
 
 void		ft_get_info(t_filler *fill)
@@ -74,36 +89,34 @@ void		ft_get_info(t_filler *fill)
 			gotpiece = 1;
 		}
 		if (gotmap && gotpiece)
-			break;
+			break ;
 	}
 }
 
 t_2dvect	ft_optimal_place(t_filler *fill)
 {
-	int		i;
-	int		j;
-	int		best;
-	int		current;
+	int			i;
+	int			j;
+	int			best;
+	int			current;
 	t_2dvect	bestplace;
 
-	i = -fill->piece->dim.x;
-	j = -fill->piece->dim.y;
+	i = -fill->piece->dim.x - 1;
+	j = -fill->piece->dim.y - 1;
 	best = 0;
 	current = 0;
 	bestplace = ft_itovect(0, 0);
-	while (i < fill->map->dim.x + fill->piece->dim.x)
+	while (++i < fill->map->dim.x + fill->piece->dim.x)
 	{
-		while (j < fill->map->dim.y + fill->piece->dim.y)
+		while (++j < fill->map->dim.y + fill->piece->dim.y)
 		{
 			if ((current = ft_get_placement_rating(ft_itovect(i, j), fill)) >= best)
 			{
 				best = current;
 				bestplace = ft_itovect(i, j);
 			}
-			j++;
 		}
 		j = -fill->piece->dim.y;
-		i++;
 	}
 	return (bestplace);
 }
