@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:04:02 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/06/30 13:30:56 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/01 14:20:11 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ void	ft_get_map_dim(t_map *map, char *parse)
 	map->size = map->dim.x * map->dim.y;
 }
 
-void	ft_get_map(t_filler *fill, char *parse)
+void	ft_get_map(t_filler *f, char *parse)
 {
 	int		i;
 	int		read;
 	char	*line;
 	t_map	*map;
 
-	map = fill->map;
+	map = f->map;
 	if (!map->init)
 		ft_get_map_dim(map, parse);
 	i = 0;
@@ -61,22 +61,22 @@ void	ft_get_map(t_filler *fill, char *parse)
 		i++;
 	}
 	if (map->init == 0)
-		ft_get_initial_pos(fill);
+		ft_get_initial_pos(f);
 	map->init = 1;
 }
 
-void	ft_print_map(t_filler *fill)
+void	ft_print_map(t_filler *f)
 {
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	while (i < fill->map->dim.x)
+	while (i < f->map->dim.x)
 	{
-		ft_putnstr_fd(&(fill->map->grid[j]), 2, fill->map->dim.y);
+		ft_putnstr_fd(&(f->map->grid[j]), 2, f->map->dim.y);
 		ft_putchar_fd('\n', 2);
 		i++;
-		j += fill->map->dim.y;
+		j += f->map->dim.y;
 	}
 }

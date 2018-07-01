@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:10:40 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/01 14:06:41 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/01 14:10:47 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "get_next_line.h"
 # include <unistd.h>
 # include <string.h>
+# include <stdlib.h>
 
 typedef struct		s_2dvect
 {
@@ -54,9 +55,9 @@ typedef struct		s_hmap
 
 typedef struct		s_filler
 {
-	t_player		*player;
+	t_player		*pl;
 	t_map			*map;
-	t_piece			*piece;
+	t_piece			*pc;
 	t_hmap			*hmap;
 }					t_filler;
 
