@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:30:24 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/02 07:45:42 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/02 09:47:11 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int			valid_pos(t_piece *pc, t_2dvect pos, t_filler *f)
 	{
 		if (x + pos.x < 0 || x + pos.x >= f->map->dim.x)
 			continue;
-		if ((count = valid_y_axis(pc, pos, f, x)) == -1)
+		if (!valid_y_axis(pos, f, x, &count))
 			return (0);
 	}
 	if (count == 1)
@@ -33,14 +33,14 @@ int			valid_pos(t_piece *pc, t_2dvect pos, t_filler *f)
 	return (0);
 }
 
-int			valid_y_axis(t_piece *pc, t_2dvect pos, t_filler *f, int x)
+int			valid_y_axis(t_2dvect pos, t_filler *f, int x, int *count)
 {
 	char	map_pc;
-	int		count;
 	int		y;
+	t_piece	*pc;
 
-	count = 0;
 	y = -1;
+	pc = f->pc;
 	while (++y < pc->dim.y)
 	{
 		if (y + pos.y < 0 || y + pos.y >= f->map->dim.y)
@@ -48,12 +48,12 @@ int			valid_y_axis(t_piece *pc, t_2dvect pos, t_filler *f, int x)
 		map_pc = f->map->grid[itop(x + pos.x, y + pos.y, f->map->dim)];
 		if (pc->grid[itop(x, y, pc->dim)] == '*' &&
 				(map_pc == f->pl->c || map_pc == f->pl->c - 32))
-			count++;
+			(*count)++;
 		else if (pc->grid[itop(x, y, pc->dim)] == '*' &&
 				(map_pc == f->pl->e || map_pc == f->pl->e - 32))
-			return (-1);
+			return (0);
 	}
-	return (count);
+	return (1);
 }
 
 int			piece_fits(t_filler *f, t_2dvect pos)
@@ -64,11 +64,11 @@ int			piece_fits(t_filler *f, t_2dvect pos)
 	int		count;
 
 	i = -1;
-	j = -1;
 	size = count_stars(f);
 	count = 0;
 	while (++i < f->pc->dim.x)
 	{
+		j = -1;
 		while (++j < f->pc->dim.y)
 		{
 			if (f->pc->grid[itop(i, j, f->pc->dim)] == '*')
@@ -78,7 +78,6 @@ int			piece_fits(t_filler *f, t_2dvect pos)
 					count++;
 			}
 		}
-		j = -1;
 	}
 	if (count == size)
 		return (1);

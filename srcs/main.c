@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/15 09:24:16 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/01 16:14:46 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/02 10:03:53 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int			main(void)
 	if (ret <= 0)
 	{
 		ft_putstr_fd("nopegnlplayer\n", 2);
-		exit(1);
+		return (0);
 	}
 	get_player_info(fill, parse);
 	while (1)
