@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:04:02 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/01 15:54:23 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/02 07:46:05 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,20 @@ void	print_map(t_filler *f)
 		ft_putchar_fd('\n', 2);
 		i++;
 		j += f->map->dim.y;
+	}
+}
+
+void	get_initial_pos(t_filler *f)
+{
+	int			i;
+
+	i = 0;
+	while (i < f->map->size)
+	{
+		if (f->map->grid[i] == f->pl->c - 32)
+			f->pl->c_start = postovect(i, f->map->dim);
+		else if (f->map->grid[i] == f->pl->e - 32)
+			f->pl->e_start = postovect(i, f->map->dim);
+		i++;
 	}
 }

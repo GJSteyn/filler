@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:10:40 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/01 16:15:04 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/02 07:37:16 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int					itop(int x, int y, t_2dvect dim);
 t_2dvect			itovect(int x, int y);
 t_2dvect			postovect(int x, t_2dvect dim);
 int					valid_pos(t_piece *piece, t_2dvect pos, t_filler *filler);
+int					valid_y_axis(t_piece *pc, t_2dvect pos, t_filler *f, int x);
 int					piece_fits(t_filler *filler, t_2dvect pos);
 int					count_stars(t_filler *filler);
 char				*ind_to_str(int x, int y);

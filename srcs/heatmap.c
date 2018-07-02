@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 07:19:57 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/02 07:27:43 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/02 07:32:25 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void		gen_hmap(t_filler *f)
 	i = 0;
 	j = 0;
 	if (!f->hmap->grid)
-		f->hmap->grid = (int*)ft_memalloc(sizeof(int) * (f->map->dim.x * f->map->dim.y));
+		f->hmap->grid = (int*)ft_memalloc(sizeof(int) *
+				(f->map->dim.x * f->map->dim.y));
 	clear_hmap(f->hmap, f->map->dim.x * f->map->dim.y);
 	while (i < f->map->dim.x)
 	{
