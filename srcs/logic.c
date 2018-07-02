@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:30:24 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/01 15:51:12 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/02 07:22:28 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int			valid_pos(t_piece *pc, t_2dvect pos, t_filler *f)
 	char	map_pc;
 
 	i = -1;
-	j = -1;
 	count = 0;
 	if (!piece_fits(f, pos))
 		return (0);
@@ -28,6 +27,7 @@ int			valid_pos(t_piece *pc, t_2dvect pos, t_filler *f)
 	{
 		if (i + pos.x < 0 || i + pos.x >= f->map->dim.x)
 			continue;
+		j = -1;
 		while (++j < pc->dim.y)
 		{
 			if (j + pos.y < 0 || j + pos.y >= f->map->dim.y)
@@ -38,7 +38,6 @@ int			valid_pos(t_piece *pc, t_2dvect pos, t_filler *f)
 			else if (pc->grid[itop(i, j, pc->dim)] == '*' && (map_pc == f->pl->e || map_pc == f->pl->e - 32))
 				return (0);
 		}
-		j = -1;
 	}
 	if (count == 1)
 		return (1);
