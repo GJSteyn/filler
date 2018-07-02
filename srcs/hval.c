@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/02 07:03:27 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/02 07:04:03 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/02 07:07:34 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void		get_hval(int x, int y, t_filler *f)
 	map = f->map->grid;
 	hmap = f->hmap->grid;
 	pos = itop(x, y, f->map->dim);
-	if (map[pos] == f->pl->c || map[pos] == f->pl->c - 32 || map[pos] == f->pl->e || map[pos] == f->pl->e - 32)
+	if (map[pos] == f->pl->c || map[pos] == f->pl->c - 32 ||
+			map[pos] == f->pl->e || map[pos] == f->pl->e - 32)
 	{
 		hmap[pos] = 0;
 		return ;
@@ -97,15 +98,14 @@ void		hval_level(int x, int y, t_filler *f)
 	hmap = f->hmap->grid;
 	if (y > 0)
 	{
-		tmp = map[itop(x, y - 1, f->map->dim)]; 
+		tmp = map[itop(x, y - 1, f->map->dim)];
 		if (tmp == f->pl->e || tmp == f->pl->e - 32)
 			hmap[itop(x, y, f->map->dim)] = 2;
 	}
 	if (y < f->map->dim.y - 1)
 	{
-		tmp = map[itop(x, y + 1, f->map->dim)]; 
+		tmp = map[itop(x, y + 1, f->map->dim)];
 		if (tmp == f->pl->e || tmp == f->pl->e - 32)
 			hmap[itop(x, y, f->map->dim)] = 2;
 	}
 }
-
