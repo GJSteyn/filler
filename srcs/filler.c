@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 12:14:32 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/15 14:24:42 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/16 07:31:54 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,11 @@ void		filler(t_filler *f)
 	get_info(f);
 	gen_hmap(f);
 	bubble(f);
-	diag_alter(f);
-	if (f->map->size < 100)
-		ft_vert_alter(f);
+	if (f->map->dim.x < 100)
+		vert_alter(f);
+	else
+		diag_alter(f);
+	print_hmap(f);
 	place = optimal_place(f);
 	temp = ind_to_str(place.x, place.y);
 	ft_putstr_fd(temp, 1);
