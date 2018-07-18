@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:10:40 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/16 07:25:59 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/18 08:09:40 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,24 +63,26 @@ typedef struct		s_filler
 
 void				filler(t_filler *filleer);
 t_filler			*new_filler(void);
+
 void				get_player_info(t_filler *filler, char *parse);
 void				get_info(t_filler *filler);
-t_2dvect			optimal_place(t_filler *filler);
+void				get_initial_pos(t_filler *filler);
 
 t_piece				*init_piece(void);
 void				get_piece_dim(t_piece *piece, char *line);
 void				get_piece(t_piece *piece, char *parse);
+int					piece_fits(t_filler *filler, t_2dvect pos);
 
 int					itop(int x, int y, t_2dvect dim);
 t_2dvect			itovect(int x, int y);
 t_2dvect			postovect(int x, t_2dvect dim);
+char				*ind_to_str(int x, int y);
+
 int					valid_pos(t_piece *piece, t_2dvect pos, t_filler *filler);
 int					valid_y_axis(t_2dvect pos, t_filler *f, int x, int *count);
-int					piece_fits(t_filler *filler, t_2dvect pos);
 int					count_stars(t_filler *filler);
-char				*ind_to_str(int x, int y);
+t_2dvect			optimal_place(t_filler *filler);
 int					place_rating(t_2dvect pos, t_filler *filler);
-void				get_initial_pos(t_filler *filler);
 
 t_map				*init_map(void);
 void				get_map_dim(t_map *map, char *parse);
@@ -90,12 +92,13 @@ void				print_map(t_filler *filler);
 t_hmap				*init_hmap(void);
 void				gen_hmap(t_filler *filler);
 void				clear_hmap(t_hmap *hmap, int mapsize);
+void				print_hmap(t_filler *filler);
+
 void				get_hval(int x, int y, t_filler *filler);
 void				hval_top(int x, int y, t_filler *filler);
 void				hval_bot(int x, int y, t_filler *filler);
 void				hval_level(int x, int y, t_filler *filler);
-void				print_hmap(t_filler *filler);
-void				diag_alter(t_filler *filler);
+
 void				bubble(t_filler *filler);
 void				bubble_top(t_filler *filler, int i, int x, int y);
 void				bubble_bot(t_filler *filler, int i, int x, int y);
@@ -103,5 +106,6 @@ void				bubble_level(t_filler *filler, int i, int x, int y);
 int					get_target(t_filler *filler);
 
 void				vert_alter(t_filler *filler);
+void				diag_alter(t_filler *filler);
 
 #endif

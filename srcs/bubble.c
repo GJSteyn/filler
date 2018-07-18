@@ -6,11 +6,40 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/01 15:07:58 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/02 09:51:35 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/18 08:10:24 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+void		bubble(t_filler *f)
+{
+	int		i;
+	int		x;
+	int		y;
+	int		target;
+
+	i = 1;
+	target = get_target(f);
+	while (i < target)
+	{
+		x = -1;
+		while (++x < f->map->dim.x)
+		{
+			y = -1;
+			while (++y < f->map->dim.y)
+			{
+				if (f->hmap->grid[itop(x, y, f->map->dim)] == 0)
+				{
+					bubble_top(f, i, x, y);
+					bubble_bot(f, i, x, y);
+					bubble_level(f, i, x, y);
+				}
+			}
+		}
+		i++;
+	}
+}
 
 void		bubble_top(t_filler *f, int i, int x, int y)
 {
@@ -81,35 +110,6 @@ void		bubble_level(t_filler *f, int i, int x, int y)
 	{
 		if (f->hmap->grid[itop(x, y + 1, f->map->dim)] == i)
 			f->hmap->grid[itop(x, y, f->map->dim)] = i + 1;
-	}
-}
-
-void		bubble(t_filler *f)
-{
-	int		i;
-	int		x;
-	int		y;
-	int		target;
-
-	i = 1;
-	target = get_target(f);
-	while (i < target)
-	{
-		x = -1;
-		while (++x < f->map->dim.x)
-		{
-			y = -1;
-			while (++y < f->map->dim.y)
-			{
-				if (f->hmap->grid[itop(x, y, f->map->dim)] == 0)
-				{
-					bubble_top(f, i, x, y);
-					bubble_bot(f, i, x, y);
-					bubble_level(f, i, x, y);
-				}
-			}
-		}
-		i++;
 	}
 }
 

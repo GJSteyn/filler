@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:30:24 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/02 09:47:11 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/18 07:44:12 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,34 +56,6 @@ int			valid_y_axis(t_2dvect pos, t_filler *f, int x, int *count)
 	return (1);
 }
 
-int			piece_fits(t_filler *f, t_2dvect pos)
-{
-	int		i;
-	int		j;
-	int		size;
-	int		count;
-
-	i = -1;
-	size = count_stars(f);
-	count = 0;
-	while (++i < f->pc->dim.x)
-	{
-		j = -1;
-		while (++j < f->pc->dim.y)
-		{
-			if (f->pc->grid[itop(i, j, f->pc->dim)] == '*')
-			{
-				if (i + pos.x >= 0 && i + pos.x < f->map->dim.x
-						&& j + pos.y >= 0 && j + pos.y < f->map->dim.y)
-					count++;
-			}
-		}
-	}
-	if (count == size)
-		return (1);
-	return (0);
-}
-
 int			count_stars(t_filler *f)
 {
 	int		i;
@@ -98,6 +70,34 @@ int			count_stars(t_filler *f)
 		i++;
 	}
 	return (count);
+}
+
+t_2dvect	optimal_place(t_filler *f)
+{
+	int			i;
+	int			j;
+	int			best;
+	int			current;
+	t_2dvect	bestplace;
+
+	i = -f->pc->dim.x - 1;
+	j = -f->pc->dim.y - 1;
+	best = 0;
+	current = 0;
+	bestplace = itovect(0, 0);
+	while (++i < f->map->dim.x + f->pc->dim.x)
+	{
+		while (++j < f->map->dim.y + f->pc->dim.y)
+		{
+			if ((current = place_rating(itovect(i, j), f)) >= best)
+			{
+				best = current;
+				bestplace = itovect(i, j);
+			}
+		}
+		j = -f->pc->dim.y - 1;
+	}
+	return (bestplace);
 }
 
 int			place_rating(t_2dvect pos, t_filler *f)

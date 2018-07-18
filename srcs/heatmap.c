@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/25 07:19:57 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/02 09:22:00 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/18 08:03:41 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,25 +66,5 @@ void		print_hmap(t_filler *f)
 		if (i % f->map->dim.y == 0)
 			ft_putchar_fd('\n', 2);
 		i++;
-	}
-}
-
-void		diag_alter(t_filler *f)
-{
-	t_2dvect	cur;
-
-	cur = f->pl->c_start;
-	while (cur.x != f->pl->e_start.x || cur.y != f->pl->e_start.y)
-	{
-		if (f->map->grid[itop(cur.x, cur.y, f->map->dim)] == '.')
-			f->hmap->grid[itop(cur.x, cur.y, f->map->dim)] += 20;
-		if (cur.x < f->pl->e_start.x)
-			cur.x += 1;
-		else if (cur.x > f->pl->e_start.x)
-			cur.x -= 1;
-		if (cur.y < f->pl->e_start.y)
-			cur.y += 1;
-		else if (cur.y > f->pl->e_start.y)
-			cur.y -= 1;
 	}
 }

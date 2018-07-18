@@ -6,13 +6,13 @@
 #    By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/12 13:53:08 by gsteyn            #+#    #+#              #
-#    Updated: 2018/07/15 14:22:10 by gsteyn           ###   ########.fr        #
+#    Updated: 2018/07/18 08:04:06 by gsteyn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = gsteyn.filler
-FILES = map.c piece.c logic.c main.c heatmap.c filler.c vects.c bubble.c \
-		hval.c vert_alter.c
+FILES = map.c piece.c utility.c main.c heatmap.c filler.c vects.c bubble.c \
+		hval.c hmap_alter.c info.c
 OBJS = $(patsubst %.c, bin/%.o, $(FILES)) ./bin/get_next_line.o
 SRCS = $(patsubst %.c, srcs/%.c, $(FILES))
 FLAGS = -Wall -Werror -Wextra

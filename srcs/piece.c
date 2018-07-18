@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 08:12:26 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/01 15:55:01 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/18 07:44:23 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,32 @@ void		get_piece(t_piece *piece, char *parse)
 		ft_strcat(piece->grid, line);
 		i++;
 	}
+}
+
+int			piece_fits(t_filler *f, t_2dvect pos)
+{
+	int		i;
+	int		j;
+	int		size;
+	int		count;
+
+	i = -1;
+	size = count_stars(f);
+	count = 0;
+	while (++i < f->pc->dim.x)
+	{
+		j = -1;
+		while (++j < f->pc->dim.y)
+		{
+			if (f->pc->grid[itop(i, j, f->pc->dim)] == '*')
+			{
+				if (i + pos.x >= 0 && i + pos.x < f->map->dim.x
+						&& j + pos.y >= 0 && j + pos.y < f->map->dim.y)
+					count++;
+			}
+		}
+	}
+	if (count == size)
+		return (1);
+	return (0);
 }
