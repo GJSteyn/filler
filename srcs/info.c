@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 07:40:23 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/18 08:02:26 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/18 08:17:28 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void		get_info(t_filler *f)
 	}
 }
 
-void	get_initial_pos(t_filler *f)
+void		get_initial_pos(t_filler *f)
 {
 	int			i;
 

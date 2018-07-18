@@ -6,7 +6,7 @@
 /*   By: gsteyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/16 07:24:16 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/07/18 08:03:47 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/07/18 08:17:37 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void		diag_alter(t_filler *f)
 	}
 }
 
-void	vert_alter(t_filler *fill)
+void		vert_alter(t_filler *fill)
 {
 	t_2dvect	cur;
 
